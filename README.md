@@ -67,7 +67,20 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Mutation** | `deleteUserProfile`  | Delete a user profile by its ID.             | `deleteUserProfile(userID: "userID")`       |
 | **Mutation** | `acceptApplication`  | Accept a job application for a listing.      | `acceptApplication(applicationID: "appID")` |
 | **Mutation** | `rejectApplication`  | Reject a job application for a listing.      | `rejectApplication(applicationID: "appID")` |
-
+| **Query** | `getCategories`       | Get a list of all available job categories. | `getCategories { id, name }`                |
+| **Query** | `getUsers`            | Get a list of all registered users.         | `getUsers { id, username }`                 |
+| **Query** | `getApplications`     | Get all job applications for a job listing. | `getApplications(jobID: "jobID") { id, user }` |
+| **Mutation** | `createCategory`    | Create a new job category.                  | `createCategory(name: "Design")`           |
+| **Mutation** | `updateCategory`    | Update a job category's details.            | `updateCategory(id: "catID", name: "New Name")` |
+| **Mutation** | `deleteCategory`    | Delete a job category by its ID.            | `deleteCategory(id: "catID")`               |
+| **Query** | `getSimilarJobs`      | Get a list of jobs similar to a given job.  | `getSimilarJobs(jobID: "jobID") { id, title, company }` |
+| **Query** | `getRecentJobs`       | Get a list of recently posted job listings. | `getRecentJobs { title, company }`          |
+| **Query** | `getJobCountByCategory`| Get the number of jobs in a specific category.| `getJobCountByCategory(category: "IT")`    |
+| **Mutation** | `addBookmark`       | Add a job listing to a user's bookmarks.   | `addBookmark(userID: "userID", jobID: "jobID")` |
+| **Mutation** | `removeBookmark`    | Remove a job listing from a user's bookmarks. | `removeBookmark(userID: "userID", jobID: "jobID")` |
+| **Mutation** | `createReview`      | Create a review for a specific job listing. | `createReview(jobID: "jobID", userID: "userID", rating: 4, content: "Great company!")` |
+| **Mutation** | `updateReview`      | Update a review's content or rating.         | `updateReview(reviewID: "reviewID", content: "Updated review")` |
+| **Mutation** | `deleteReview`      | Delete a review by its ID.                   | `deleteReview(reviewID: "reviewID")`       |
 
 ## Contributing
 

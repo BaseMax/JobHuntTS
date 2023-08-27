@@ -46,6 +46,29 @@ npm run dev
 
 Open your browser and visit `http://localhost:3000` to access JobHunt.
 
+## GraphQL
+
+| Type      | Name                   | Description                                  | Example                                      |
+|-----------|------------------------|----------------------------------------------|----------------------------------------------|
+| **Query** | `getJobs`              | Get a list of all available job listings.    | `getJobs { id, title, company }`             |
+| **Query** | `getJobById`           | Get details of a specific job by its ID.     | `getJobById(id: "jobID") { title, salary }` |
+| **Query** | `getJobByTitle`        | Search for jobs by title.                    | `getJobByTitle(title: "Software Engineer")` |
+| **Query** | `getJobByCategory`     | Filter jobs by category.                     | `getJobByCategory(category: "Engineering")` |
+| **Query** | `getFeaturedJobs`      | Get a list of featured job listings.         | `getFeaturedJobs { title, company }`        |
+| **Query** | `getUserProfile`       | Get the profile of a specific user.          | `getUserProfile(username: "john_doe")`     |
+| **Query** | `getUserApplications`  | Get applications...                         | `getUserApplications(userID: "userID")`     |
+| **Mutation** | `createJobListing`  | Create a new job listing.                    | `createJobListing(input: { title, ... })`   |
+| **Mutation** | `updateJobListing`  | Update details of an existing job listing.   | `updateJobListing(id: "jobID", input: { title, ... })` |
+| **Mutation** | `deleteJobListing`  | Delete a job listing by its ID.              | `deleteJobListing(id: "jobID")`             |
+| **Mutation** | `applyForJob`        | Apply for a job listing using user's profile.| `applyForJob(jobID: "jobID", userID: "userID")` |
+| **Mutation** | `withdrawApplication`| Withdraw a job application by its ID.        | `withdrawApplication(applicationID: "appID")` |
+| **Mutation** | `createUserProfile`  | Create a new user profile.                   | `createUserProfile(input: { username, ... })` |
+| **Mutation** | `updateUserProfile`  | Update user profile details.                 | `updateUserProfile(userID: "userID", input: { bio, ... })` |
+| **Mutation** | `deleteUserProfile`  | Delete a user profile by its ID.             | `deleteUserProfile(userID: "userID")`       |
+| **Mutation** | `acceptApplication`  | Accept a job application for a listing.      | `acceptApplication(applicationID: "appID")` |
+| **Mutation** | `rejectApplication`  | Reject a job application for a listing.      | `rejectApplication(applicationID: "appID")` |
+
+
 ## Contributing
 
 We encourage contributions from the open-source community to make JobHunt even better. Here's how you can contribute:

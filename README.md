@@ -81,6 +81,245 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Mutation** | `createReview`      | Create a review for a specific job listing. | `createReview(jobID: "jobID", userID: "userID", rating: 4, content: "Great company!")` |
 | **Mutation** | `updateReview`      | Update a review's content or rating.         | `updateReview(reviewID: "reviewID", content: "Updated review")` |
 | **Mutation** | `deleteReview`      | Delete a review by its ID.                   | `deleteReview(reviewID: "reviewID")`       |
+| **Mutation** | `rateReview`        | Rate a review as helpful or unhelpful.       | `rateReview(reviewID: "reviewID", helpful: true)` |
+| **Query** | `getBookmarkedJobs`   | Get a list of jobs bookmarked by a user.    | `getBookmarkedJobs(userID: "userID") { id, title, company }` |
+| **Query** | `getReviewsForJob`    | Get all reviews for a specific job listing. | `getReviewsForJob(jobID: "jobID") { id, rating, content }` |
+| **Query** | `getTopCategories`    | Get the most popular job categories.         | `getTopCategories(limit: 5) { name, jobCount }` |
+| **Query** | `getUserBookmarkCount`| Get the number of bookmarks for a user.      | `getUserBookmarkCount(userID: "userID")`   |
+| **Mutation** | `createApplication`  | Create a new job application.                | `createApplication(userID: "userID", jobID: "jobID")` |
+| **Mutation** | `updateApplication`  | Update details of a job application.         | `updateApplication(applicationID: "appID", input: { status: "Reviewed" })` |
+| **Mutation** | `deleteApplication`  | Delete a job application by its ID.          | `deleteApplication(applicationID: "appID")` |
+| **Query** | `getJobsWithApplications`| Get a list of jobs with associated applications.| `getJobsWithApplications { id, title, applicationCount }` |
+| **Query** | `getOpenApplications` | Get a list of open job applications.         | `getOpenApplications { id, user, job, status }` |
+
+## GraphQL Schema
+
+```graphql
+type Job {
+  id: ID!
+  title: String!
+  company: String!
+  category: String!
+  salary: Float
+  description: String!
+  requirements: [String]
+  location: String
+  featured: Boolean
+  applications: [Application]
+  reviews: [Review]
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  bio: String
+  applications: [Application]
+  bookmarks: [Job]
+  reviews: [Review]
+}
+
+type Application {
+  id: ID!
+  user: User!
+  job: Job!
+  status: String!
+  createdDate: String!
+}
+
+type Review {
+  id: ID!
+  user: User!
+  job: Job!
+  rating: Int!
+  content: String!
+  helpfulCount: Int!
+  unhelpfulCount: Int!
+}
+
+type Category {
+  id: ID!
+  name: String!
+  jobs: [Job]
+}
+
+type Bookmark {
+  id: ID!
+  user: User!
+  job: Job!
+}
+
+type ReviewFeedback {
+  id: ID!
+  review: Review!
+  user: User!
+  helpful: Boolean!
+}
+
+type JobCountByCategory {
+  category: String!
+  count: Int!
+}
+
+type ReviewRating {
+  reviewID: ID!
+  helpfulCount: Int!
+  unhelpfulCount: Int!
+}
+
+type CategoryWithJobCount {
+  id: ID!
+  name: String!
+  jobCount: Int!
+}
+
+type ApplicationWithStatus {
+  id: ID!
+  user: User!
+  job: Job!
+  status: String!
+}
+
+type JobWithApplications {
+  id: ID!
+  title: String!
+  applicationCount: Int!
+}
+
+type ApplicationStatus {
+  status: String!
+  count: Int!
+}
+
+type ReviewWithAuthor {
+  id: ID!
+  rating: Int!
+  content: String!
+  helpfulCount: Int!
+  unhelpfulCount: Int!
+  user: User!
+}
+
+type UserWithBookmarks {
+  id: ID!
+  username: String!
+  bookmarkCount: Int!
+}
+
+type Query {
+  getJobs: [Job]
+  getJobById(id: ID!): Job
+  getJobByTitle(title: String!): [Job]
+  getJobByCategory(category: String!): [Job]
+  getFeaturedJobs: [Job]
+  getUserProfile(username: String!): User
+  getUserApplications(userID: ID!): [Application]
+  getCategories: [Category]
+  getUsers: [User]
+  getApplications(jobID: ID!): [Application]
+  getSimilarJobs(jobID: ID!): [Job]
+  getRecentJobs: [Job]
+  getJobCountByCategory(category: String!): Int
+  getBookmarkedJobs(userID: ID!): [Job]
+  getReviewsForJob(jobID: ID!): [Review]
+  getTopCategories(limit: Int!): [CategoryWithJobCount]
+  getUserBookmarkCount(userID: ID!): Int
+  getJobsWithApplications: [JobWithApplications]
+  getOpenApplications: [ApplicationWithStatus]
+  getReviewFeedbackByID(id: ID!): ReviewFeedback
+  getReviewFeedbackForReview(reviewID: ID!): [ReviewFeedback]
+  getReviewByID(id: ID!): Review
+  getReviewByRating(rating: Int!): [Review]
+  getReviewByAuthor(userID: ID!): [Review]
+  getCategoryByID(id: ID!): Category
+  getCategoryByName(name: String!): Category
+  getCategoriesWithJobs: [CategoryWithJobCount]
+  getJobsWithCategories: [JobWithCategories]
+  getUsersWithReviews: [UserWithReviews]
+  getReviewsWithFeedback: [ReviewWithAuthor]
+  getUsersWithApplicationsAndBookmarks: [UserWithBookmarks]
+  getApplicationsWithUserAndJob: [ApplicationWithStatus]
+}
+
+type Mutation {
+  createJobListing(input: CreateJobInput!): Job
+  updateJobListing(id: ID!, input: UpdateJobInput!): Job
+  deleteJobListing(id: ID!): Job
+  applyForJob(jobID: ID!, userID: ID!): Application
+  withdrawApplication(applicationID: ID!): Application
+  createUserProfile(input: CreateUserInput!): User
+  updateUserProfile(userID: ID!, input: UpdateUserInput!): User
+  deleteUserProfile(userID: ID!): User
+  acceptApplication(applicationID: ID!): Application
+  rejectApplication(applicationID: ID!): Application
+  createCategory(name: String!): Category
+  updateCategory(id: ID!, name: String!): Category
+  deleteCategory(id: ID!): Category
+  addBookmark(userID: ID!, jobID: ID!): Bookmark
+  removeBookmark(userID: ID!, jobID: ID!): Bookmark
+  createReview(jobID: ID!, userID: ID!, rating: Int!, content: String!): Review
+  updateReview(reviewID: ID!, content: String!): Review
+  deleteReview(reviewID: ID!): Review
+  rateReview(reviewID: ID!, helpful: Boolean!): Review
+  createApplication(userID: ID!, jobID: ID!): Application
+  updateApplication(applicationID: ID!, input: UpdateApplicationInput!): Application
+  deleteApplication(applicationID: ID!): Application
+  updateApplicationStatus(applicationID: ID!, status: String!): Application
+  createReviewFeedback(reviewID: ID!, userID: ID!, helpful: Boolean!): ReviewFeedback
+  updateReviewFeedback(id: ID!, helpful: Boolean!): ReviewFeedback
+  deleteReviewFeedback(id: ID!): ReviewFeedback
+  createBookmark(userID: ID!, jobID: ID!): Bookmark
+  deleteBookmark(id: ID!): Bookmark
+}
+
+input CreateJobInput {
+  title: String!
+  company: String!
+  category: String!
+  salary: Float
+  description: String!
+  requirements: [String]
+  location: String
+  featured: Boolean
+}
+
+input UpdateJobInput {
+  title: String
+  company: String
+  category: String
+  salary: Float
+  description: String
+  requirements: [String]
+  location: String
+  featured: Boolean
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  bio: String
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  bio: String
+}
+
+input UpdateApplicationInput {
+  status: String
+}
+
+input UpdateReviewFeedbackInput {
+  helpful: Boolean
+}
+
+input CreateReviewFeedbackInput {
+  reviewID: ID!
+  userID: ID!
+  helpful: Boolean!
+}
+```
 
 ## Contributing
 

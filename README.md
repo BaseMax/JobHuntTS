@@ -321,6 +321,274 @@ input CreateReviewFeedbackInput {
 }
 ```
 
+## Database Schema
+
+```sql
+-- Table: job_reviews_feedback
+CREATE TABLE job_reviews_feedback (
+  review_id INT REFERENCES reviews(id),
+  user_id INT REFERENCES users(id),
+  helpful BOOLEAN NOT NULL,
+  PRIMARY KEY (review_id, user_id)
+);
+
+-- Table: user_reviews
+CREATE TABLE user_reviews (
+  user_id INT REFERENCES users(id),
+  review_id INT REFERENCES reviews(id),
+  PRIMARY KEY (user_id, review_id)
+);
+
+-- Table: user_applications_feedback
+CREATE TABLE user_applications_feedback (
+  application_id INT REFERENCES applications(id),
+  user_id INT REFERENCES users(id),
+  helpful BOOLEAN NOT NULL,
+  PRIMARY KEY (application_id, user_id)
+);
+
+-- Table: job_review_feedback
+CREATE TABLE job_review_feedback (
+  review_id INT REFERENCES reviews(id),
+  feedback_id INT REFERENCES review_feedback(id),
+  PRIMARY KEY (review_id, feedback_id)
+);
+
+-- Table: job_application_feedback
+CREATE TABLE job_application_feedback (
+  application_id INT REFERENCES applications(id),
+  feedback_id INT REFERENCES applications_feedback(id),
+  PRIMARY KEY (application_id, feedback_id)
+);
+
+-- You would create additional tables for other relationships and types as needed.
+
+-- Indexes
+CREATE INDEX idx_job_category ON jobs(category);
+CREATE INDEX idx_application_user_job ON applications(user_id, job_id);
+CREATE INDEX idx_review_user_job ON reviews(user_id, job_id);
+CREATE INDEX idx_bookmark_user_job ON bookmarks(user_id, job_id);
+CREATE INDEX idx_review_feedback_review_user ON review_feedback(review_id, user_id);
+CREATE INDEX idx_application_feedback_application_user ON applications_feedback(application_id, user_id);
+CREATE INDEX idx_job_review_feedback ON job_reviews_feedback(review_id, user_id);
+CREATE INDEX idx_user_review ON user_reviews(user_id, review_id);
+CREATE INDEX idx_user_application_feedback ON user_applications_feedback(application_id, user_id);
+
+-- Table: job_reviews_helpful
+CREATE TABLE job_reviews_helpful (
+  review_id INT REFERENCES reviews(id),
+  user_id INT REFERENCES users(id),
+  helpful BOOLEAN NOT NULL,
+  PRIMARY KEY (review_id, user_id)
+);
+
+-- Table: job_applications_feedback
+CREATE TABLE job_applications_feedback (
+  application_id INT REFERENCES applications(id),
+  feedback_id INT REFERENCES applications_feedback(id),
+  PRIMARY KEY (application_id, feedback_id)
+);
+
+-- Table: job_review_feedback_helpful
+CREATE TABLE job_review_feedback_helpful (
+  review_id INT REFERENCES reviews(id),
+  feedback_id INT REFERENCES review_feedback(id),
+  user_id INT REFERENCES users(id),
+  helpful BOOLEAN NOT NULL,
+  PRIMARY KEY (review_id, feedback_id, user_id)
+);
+
+-- Table: job_application_feedback_helpful
+CREATE TABLE job_application_feedback_helpful (
+  application_id INT REFERENCES applications(id),
+  feedback_id INT REFERENCES applications_feedback(id),
+  user_id INT REFERENCES users(id),
+  helpful BOOLEAN NOT NULL,
+  PRIMARY KEY (application_id, feedback_id, user_id)
+);
+
+-- You would create additional tables for other relationships and types as needed.
+
+-- Indexes
+CREATE INDEX idx_job_category ON jobs(category);
+CREATE INDEX idx_application_user_job ON applications(user_id, job_id);
+CREATE INDEX idx_review_user_job ON reviews(user_id, job_id);
+CREATE INDEX idx_bookmark_user_job ON bookmarks(user_id, job_id);
+CREATE INDEX idx_review_feedback_review_user ON review_feedback(review_id, user_id);
+CREATE INDEX idx_application_feedback_application_user ON applications_feedback(application_id, user_id);
+CREATE INDEX idx_job_review_feedback ON job_reviews_feedback(review_id, user_id);
+CREATE INDEX idx_user_review ON user_reviews(user_id, review_id);
+CREATE INDEX idx_user_application_feedback ON user_applications_feedback(application_id, user_id);
+CREATE INDEX idx_job_review_feedback_helpful ON job_review_feedback_helpful(review_id, feedback_id, user_id);
+CREATE INDEX idx_job_application_feedback_helpful ON job_application_feedback_helpful(application_id, feedback_id, user_id);
+
+-- Table: jobs
+CREATE TABLE jobs (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  company TEXT NOT NULL,
+  category TEXT NOT NULL,
+  salary FLOAT,
+  description TEXT NOT NULL,
+  requirements TEXT[],
+  location TEXT,
+  featured BOOLEAN,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Table: users
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username TEXT NOT NULL,
+  email TEXT NOT NULL,
+  bio TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Table: applications
+CREATE TABLE applications (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  job_id INT REFERENCES jobs(id),
+  status TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Table: reviews
+CREATE TABLE reviews (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  job_id INT REFERENCES jobs(id),
+  rating INT NOT NULL,
+  content TEXT NOT NULL,
+  helpful_count INT DEFAULT 0,
+  unhelpful_count INT DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Table: categories
+CREATE TABLE categories (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+-- Table: bookmarks
+CREATE TABLE bookmarks (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  job_id INT REFERENCES jobs(id)
+);
+
+-- Table: review_feedback
+CREATE TABLE review_feedback (
+  id SERIAL PRIMARY KEY,
+  review_id INT REFERENCES reviews(id),
+  user_id INT REFERENCES users(id),
+  helpful BOOLEAN NOT NULL
+);
+
+-- Table: applications_feedback
+CREATE TABLE applications_feedback (
+  id SERIAL PRIMARY KEY,
+  application_id INT REFERENCES applications(id),
+  user_id INT REFERENCES users(id),
+  helpful BOOLEAN NOT NULL
+);
+
+-- Table: job_categories
+CREATE TABLE job_categories (
+  job_id INT REFERENCES jobs(id),
+  category_id INT REFERENCES categories(id),
+  PRIMARY KEY (job_id, category_id)
+);
+
+-- Table: job_reviews
+CREATE TABLE job_reviews (
+  job_id INT REFERENCES jobs(id),
+  review_id INT REFERENCES reviews(id),
+  PRIMARY KEY (job_id, review_id)
+);
+
+-- Table: user_applications
+CREATE TABLE user_applications (
+  user_id INT REFERENCES users(id),
+  application_id INT REFERENCES applications(id),
+  PRIMARY KEY (user_id, application_id)
+);
+
+-- Table: user_bookmarks
+CREATE TABLE user_bookmarks (
+  user_id INT REFERENCES users(id),
+  job_id INT REFERENCES jobs(id),
+  PRIMARY KEY (user_id, job_id)
+);
+
+-- You would create additional tables for other relationships and types as needed.
+
+-- Indexes
+CREATE INDEX idx_job_category ON jobs(category);
+CREATE INDEX idx_application_user_job ON applications(user_id, job_id);
+CREATE INDEX idx_review_user_job ON reviews(user_id, job_id);
+CREATE INDEX idx_bookmark_user_job ON bookmarks(user_id, job_id);
+CREATE INDEX idx_review_feedback_review_user ON review_feedback(review_id, user_id);
+CREATE INDEX idx_application_feedback_application_user ON applications_feedback(application_id, user_id);
+
+-- Table: job_review_feedback_unhelpful
+CREATE TABLE job_review_feedback_unhelpful (
+  review_id INT REFERENCES reviews(id),
+  feedback_id INT REFERENCES review_feedback(id),
+  user_id INT REFERENCES users(id),
+  unhelpful BOOLEAN NOT NULL,
+  PRIMARY KEY (review_id, feedback_id, user_id)
+);
+
+-- Table: job_application_feedback_unhelpful
+CREATE TABLE job_application_feedback_unhelpful (
+  application_id INT REFERENCES applications(id),
+  feedback_id INT REFERENCES applications_feedback(id),
+  user_id INT REFERENCES users(id),
+  unhelpful BOOLEAN NOT NULL,
+  PRIMARY KEY (application_id, feedback_id, user_id)
+);
+
+-- Table: job_review_feedback_report
+CREATE TABLE job_review_feedback_report (
+  review_id INT REFERENCES reviews(id),
+  feedback_id INT REFERENCES review_feedback(id),
+  user_id INT REFERENCES users(id),
+  report_reason TEXT NOT NULL,
+  PRIMARY KEY (review_id, feedback_id, user_id)
+);
+
+-- Table: job_application_feedback_report
+CREATE TABLE job_application_feedback_report (
+  application_id INT REFERENCES applications(id),
+  feedback_id INT REFERENCES applications_feedback(id),
+  user_id INT REFERENCES users(id),
+  report_reason TEXT NOT NULL,
+  PRIMARY KEY (application_id, feedback_id, user_id)
+);
+
+-- You would create additional tables for other relationships and types as needed.
+
+-- Indexes
+CREATE INDEX idx_job_category ON jobs(category);
+CREATE INDEX idx_application_user_job ON applications(user_id, job_id);
+CREATE INDEX idx_review_user_job ON reviews(user_id, job_id);
+CREATE INDEX idx_bookmark_user_job ON bookmarks(user_id, job_id);
+CREATE INDEX idx_review_feedback_review_user ON review_feedback(review_id, user_id);
+CREATE INDEX idx_application_feedback_application_user ON applications_feedback(application_id, user_id);
+CREATE INDEX idx_job_review_feedback ON job_reviews_feedback(review_id, user_id);
+CREATE INDEX idx_user_review ON user_reviews(user_id, review_id);
+CREATE INDEX idx_user_application_feedback ON user_applications_feedback(application_id, user_id);
+CREATE INDEX idx_job_review_feedback_helpful ON job_review_feedback_helpful(review_id, feedback_id, user_id);
+CREATE INDEX idx_job_application_feedback_helpful ON job_application_feedback_helpful(application_id, feedback_id, user_id);
+CREATE INDEX idx_job_review_feedback_unhelpful ON job_review_feedback_unhelpful(review_id, feedback_id, user_id);
+CREATE INDEX idx_job_application_feedback_unhelpful ON job_application_feedback_unhelpful(application_id, feedback_id, user_id);
+CREATE INDEX idx_job_review_feedback_report ON job_review_feedback_report(review_id, feedback_id, user_id);
+CREATE INDEX idx_job_application_feedback_report ON job_application_feedback_report(application_id, feedback_id, user_id);
+```
+
 ## Contributing
 
 We encourage contributions from the open-source community to make JobHunt even better. Here's how you can contribute:

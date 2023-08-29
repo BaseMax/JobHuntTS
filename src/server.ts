@@ -10,6 +10,7 @@ import { logger } from "./modules/common/logger";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { AuthResolver } from "./modules/auth/auth-resolver";
+import { formatError } from "./modules/common/error-formater";
 dotenv.config();
 
 const port = process.env.Port || 3000;
@@ -26,7 +27,7 @@ export async function createServer() {
 
   const apolloServer = new ApolloServer<ContextType>({
     schema,
-    // formatError: formatError,
+    formatError: formatError,
   });
 
   const { url } = await startStandaloneServer(apolloServer, {

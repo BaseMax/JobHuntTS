@@ -9,7 +9,13 @@ type AuthPayload {
   refreshToken: String!
 }
 
+input LoginInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
+  login(input: LoginInput!): AuthPayload
   signup(input: SignupInput!): AuthPayload
 }
 

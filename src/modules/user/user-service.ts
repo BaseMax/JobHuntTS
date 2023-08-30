@@ -17,7 +17,7 @@ export class UserService {
     return UserModel.findOne({
       email: email,
     });
-  }
+}
   async updateRefreshToken(
     userId: string,
     refreshToken: string

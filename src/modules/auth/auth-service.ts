@@ -5,6 +5,10 @@ import { AuthPayload } from "./entity/auth-payload.";
 import jwt from "jsonwebtoken";
 import { JwtService } from "./jwt-service";
 import { JwtPayload } from "../../interfaces/jwt-payload";
+import { LoginInput } from "./dto/login-input";
+import * as argon2 from "argon2";
+import { GraphQLError } from "graphql";
+
 @injectable()
 export class AuthService {
   constructor(
@@ -21,6 +25,23 @@ export class AuthService {
     const jwtPayload: JwtPayload = { name: user.name, sub: user._id };
     const tokens = this.jwtService.signTokens(jwtPayload);
     await this.userService.updateRefreshToken(user._id, tokens.refreshToken);
+    return {
+      name: user.name,
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+    };
+  }
+
+  async login(loginInput: LoginInput): Promise<AuthPayload | null> {
+    const user = await this.userService.findByEmail(loginInput.email);
+
+    if (!user || !(await argon2.verify(user.password, loginInput.password)))
+      throw new GraphQLError("credentials aren't correct.");
+
+    const jwtPayload: JwtPayload = { name: user.name, sub: user._id };
+    const tokens = this.jwtService.signTokens(jwtPayload);
+    await this.userService.updateRefreshToken(user._id, tokens.refreshToken);
+
     return {
       name: user.name,
       accessToken: tokens.accessToken,

@@ -11,6 +11,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { AuthResolver } from "./modules/auth/auth-resolver";
 import { formatError } from "./modules/common/error-formater";
+import { CustomAuthChecker } from "./modules/auth/auth-checker";
 dotenv.config();
 
 const port = process.env.Port || 3000;
@@ -21,7 +22,7 @@ export async function createServer() {
     resolvers: [AuthResolver],
     emitSchemaFile: path.resolve(__dirname, "schema.graphql"),
     container: { get: (cls) => container.resolve(cls) },
-
+    authChecker: CustomAuthChecker,
     validate: true,
   });
 

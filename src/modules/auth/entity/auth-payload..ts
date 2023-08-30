@@ -6,5 +6,8 @@ export class AuthPayload {
   name: string;
 
   @Field()
-  token: string;
+  accessToken: string;
+
+  @Field()
+  refreshToken: string;
 }

@@ -9,7 +9,7 @@ type IValidationError = Pick<
   "property" | "value" | "constraints" | "children"
 >;
 
-export function formatError(error: any): GraphQLFormattedError {
+export function formatError(error: any): GraphQLFormattedError {  
   let originalError = unwrapResolverError(error);
   let validationMessages;
   if (error.message === "Argument Validation Error") {

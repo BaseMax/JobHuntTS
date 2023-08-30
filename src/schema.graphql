@@ -4,14 +4,21 @@
 # -----------------------------------------------
 
 type AuthPayload {
+  accessToken: String!
   name: String!
-  token: String!
+  refreshToken: String!
 }
 
 type Mutation {
-  signup: AuthPayload!
+  signup(input: SignupInput!): AuthPayload
 }
 
 type Query {
   getHello: String!
+}
+
+input SignupInput {
+  email: String!
+  name: String!
+  password: String!
 }

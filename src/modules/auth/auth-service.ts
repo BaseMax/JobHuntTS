@@ -48,4 +48,24 @@ export class AuthService {
       refreshToken: tokens.refreshToken,
     };
   }
+
+  async refreshTokens(refreshToken: string): Promise<AuthPayload | null> {
+    const jwtPayload = this.jwtService.verify<JwtPayload>(refreshToken);
+
+    const newJwtPayload: JwtPayload = {
+      name: jwtPayload.name,
+      sub: jwtPayload.sub,
+    };
+    const tokens = this.jwtService.signTokens(newJwtPayload);
+    await this.userService.updateRefreshToken(
+      jwtPayload.sub,
+      tokens.refreshToken
+    );
+
+    return {
+      name: jwtPayload.name,
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+    };
+  }
 }

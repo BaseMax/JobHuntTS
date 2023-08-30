@@ -19,6 +19,11 @@ export class AuthResolver {
     return await this.authService.login(loginInput);
   }
 
+  @Mutation(() => AuthPayload, { nullable: true })
+  async refreshToken(@Arg("refreshToken") refreshToken: string) {
+    return await this.authService.refreshTokens(refreshToken);
+  }
+
   @Query(() => String)
   async getHello() {
     return "aks";

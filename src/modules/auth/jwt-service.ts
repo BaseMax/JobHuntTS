@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { JwtPayload } from "../../interfaces/jwt-payload";
 import { Tokens } from "../../interfaces/tokens-interface";
 import jwt from "jsonwebtoken";
+import { GraphQLError } from "graphql";
 
 @injectable()
 export class JwtService {
@@ -21,5 +22,13 @@ export class JwtService {
     });
 
     return { accessToken, refreshToken };
+  }
+
+  verify<P>(token: string): P {
+    try {
+      return jwt.verify(token, this.secretKey) as P;
+    } catch {
+      throw new GraphQLError("you should login");
+    }
   }
 }

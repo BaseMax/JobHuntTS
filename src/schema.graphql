@@ -16,6 +16,7 @@ input LoginInput {
 
 type Mutation {
   login(input: LoginInput!): AuthPayload
+  refreshToken(refreshToken: String!): AuthPayload
   signup(input: SignupInput!): AuthPayload
 }
 

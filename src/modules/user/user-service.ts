@@ -9,13 +9,21 @@ export class UserService {
   async create(createUserInput: ICreateUserInput): Promise<UserDocument> {
     return UserModel.create({
       ...createUserInput,
-      password:await   argon2.hash(createUserInput.password),
+      password: await argon2.hash(createUserInput.password),
     });
   }
 
-  async findByEmail(email: string): Promise<UserDocument|null> {
+  async findByEmail(email: string): Promise<UserDocument | null> {
     return UserModel.findOne({
       email: email,
+    });
+  }
+  async updateRefreshToken(
+    userId: string,
+    refreshToken: string
+  ): Promise<UserDocument | null> {
+    return UserModel.findByIdAndUpdate(userId, {
+      $set: { refreshToken: await argon2.hash(refreshToken) },
     });
   }
 }

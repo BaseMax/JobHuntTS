@@ -20,13 +20,11 @@ export class AuthService {
     const user = await this.userService.create(signupInput);
     const jwtPayload: JwtPayload = { name: user.name, sub: user._id };
     const tokens = this.jwtService.signTokens(jwtPayload);
+    await this.userService.updateRefreshToken(user._id, tokens.refreshToken);
     return {
       name: user.name,
       accessToken: tokens.accessToken,
       refreshToken: tokens.refreshToken,
     };
   }
-
-
-  
 }

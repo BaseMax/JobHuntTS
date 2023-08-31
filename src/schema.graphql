@@ -63,6 +63,7 @@ type Mutation {
 
 type Query {
   getHello: String!
+  getJobs: [Job!]
 }
 
 input SignupInput {

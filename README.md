@@ -48,49 +48,49 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 
 ## GraphQL
 
-| Type      | Name                   | Description                                  | Example                                      |
-|-----------|------------------------|----------------------------------------------|----------------------------------------------|
-| **Query** | `getJobs`              | Get a list of all available job listings.    | `getJobs { id, title, company }`             |
-| **Query** | `getJobById`           | Get details of a specific job by its ID.     | `getJobById(id: "jobID") { title, salary }` |
-| **Query** | `getJobByTitle`        | Search for jobs by title.                    | `getJobByTitle(title: "Software Engineer")` |
-| **Query** | `getJobByCategory`     | Filter jobs by category.                     | `getJobByCategory(category: "Engineering")` |
-| **Query** | `getFeaturedJobs`      | Get a list of featured job listings.         | `getFeaturedJobs { title, company }`        |
-| **Query** | `getUserProfile`       | Get the profile of a specific user.          | `getUserProfile(username: "john_doe")`     |
-| **Query** | `getUserApplications`  | Get applications...                         | `getUserApplications(userID: "userID")`     |
-| **Mutation** | `createJobListing`  | Create a new job listing.                    | `createJobListing(input: { title, ... })`   |
-| **Mutation** | `updateJobListing`  | Update details of an existing job listing.   | `updateJobListing(id: "jobID", input: { title, ... })` |
-| **Mutation** | `deleteJobListing`  | Delete a job listing by its ID.              | `deleteJobListing(id: "jobID")`             |
-| **Mutation** | `applyForJob`        | Apply for a job listing using user's profile.| `applyForJob(jobID: "jobID", userID: "userID")` |
-| **Mutation** | `withdrawApplication`| Withdraw a job application by its ID.        | `withdrawApplication(applicationID: "appID")` |
-| **Mutation** | `createUserProfile`  | Create a new user profile.                   | `createUserProfile(input: { username, ... })` |
-| **Mutation** | `updateUserProfile`  | Update user profile details.                 | `updateUserProfile(userID: "userID", input: { bio, ... })` |
-| **Mutation** | `deleteUserProfile`  | Delete a user profile by its ID.             | `deleteUserProfile(userID: "userID")`       |
-| **Mutation** | `acceptApplication`  | Accept a job application for a listing.      | `acceptApplication(applicationID: "appID")` |
-| **Mutation** | `rejectApplication`  | Reject a job application for a listing.      | `rejectApplication(applicationID: "appID")` |
-| **Query** | `getCategories`       | Get a list of all available job categories. | `getCategories { id, name }`                |
-| **Query** | `getUsers`            | Get a list of all registered users.         | `getUsers { id, username }`                 |
-| **Query** | `getApplications`     | Get all job applications for a job listing. | `getApplications(jobID: "jobID") { id, user }` |
-| **Mutation** | `createCategory`    | Create a new job category.                  | `createCategory(name: "Design")`           |
-| **Mutation** | `updateCategory`    | Update a job category's details.            | `updateCategory(id: "catID", name: "New Name")` |
-| **Mutation** | `deleteCategory`    | Delete a job category by its ID.            | `deleteCategory(id: "catID")`               |
-| **Query** | `getSimilarJobs`      | Get a list of jobs similar to a given job.  | `getSimilarJobs(jobID: "jobID") { id, title, company }` |
-| **Query** | `getRecentJobs`       | Get a list of recently posted job listings. | `getRecentJobs { title, company }`          |
-| **Query** | `getJobCountByCategory`| Get the number of jobs in a specific category.| `getJobCountByCategory(category: "IT")`    |
-| **Mutation** | `addBookmark`       | Add a job listing to a user's bookmarks.   | `addBookmark(userID: "userID", jobID: "jobID")` |
-| **Mutation** | `removeBookmark`    | Remove a job listing from a user's bookmarks. | `removeBookmark(userID: "userID", jobID: "jobID")` |
-| **Mutation** | `createReview`      | Create a review for a specific job listing. | `createReview(jobID: "jobID", userID: "userID", rating: 4, content: "Great company!")` |
-| **Mutation** | `updateReview`      | Update a review's content or rating.         | `updateReview(reviewID: "reviewID", content: "Updated review")` |
-| **Mutation** | `deleteReview`      | Delete a review by its ID.                   | `deleteReview(reviewID: "reviewID")`       |
-| **Mutation** | `rateReview`        | Rate a review as helpful or unhelpful.       | `rateReview(reviewID: "reviewID", helpful: true)` |
-| **Query** | `getBookmarkedJobs`   | Get a list of jobs bookmarked by a user.    | `getBookmarkedJobs(userID: "userID") { id, title, company }` |
-| **Query** | `getReviewsForJob`    | Get all reviews for a specific job listing. | `getReviewsForJob(jobID: "jobID") { id, rating, content }` |
-| **Query** | `getTopCategories`    | Get the most popular job categories.         | `getTopCategories(limit: 5) { name, jobCount }` |
-| **Query** | `getUserBookmarkCount`| Get the number of bookmarks for a user.      | `getUserBookmarkCount(userID: "userID")`   |
-| **Mutation** | `createApplication`  | Create a new job application.                | `createApplication(userID: "userID", jobID: "jobID")` |
-| **Mutation** | `updateApplication`  | Update details of a job application.         | `updateApplication(applicationID: "appID", input: { status: "Reviewed" })` |
-| **Mutation** | `deleteApplication`  | Delete a job application by its ID.          | `deleteApplication(applicationID: "appID")` |
-| **Query** | `getJobsWithApplications`| Get a list of jobs with associated applications.| `getJobsWithApplications { id, title, applicationCount }` |
-| **Query** | `getOpenApplications` | Get a list of open job applications.         | `getOpenApplications { id, user, job, status }` |
+| Type         | Name                      | Description                                      | Example                                                                                |
+| ------------ | ------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| **Query**    | `getJobs`                 | Get a list of all available jobs.                | ![get list of jobs ](./screenshots/getJobs.png)                                        |
+| **Query**    | `getJobById`              | Get details of a specific job by its ID.         | `getJobById(id: "jobID") { title, salary }`                                            |
+| **Query**    | `getJobByTitle`           | Search for jobs by title.                        | `getJobByTitle(title: "Software Engineer")`                                            |
+| **Query**    | `getJobByCategory`        | Filter jobs by category.                         | `getJobByCategory(category: "Engineering")`                                            |
+| **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.             | `getFeaturedJobs { title, company }`                                                   |
+| **Query**    | `getUserProfile`          | Get the profile of a specific user.              | `getUserProfile(username: "john_doe")`                                                 |
+| **Query**    | `getUserApplications`     | Get applications...                              | `getUserApplications(userID: "userID")`                                                |
+| **Mutation** | `createJobListing`        | Create a new job listing.                        | `createJobListing(input: { title, ... })`                                              |
+| **Mutation** | `updateJobListing`        | Update details of an existing job listing.       | `updateJobListing(id: "jobID", input: { title, ... })`                                 |
+| **Mutation** | `deleteJobListing`        | Delete a job listing by its ID.                  | `deleteJobListing(id: "jobID")`                                                        |
+| **Mutation** | `applyForJob`             | Apply for a job listing using user's profile.    | `applyForJob(jobID: "jobID", userID: "userID")`                                        |
+| **Mutation** | `withdrawApplication`     | Withdraw a job application by its ID.            | `withdrawApplication(applicationID: "appID")`                                          |
+| **Mutation** | `createUserProfile`       | Create a new user profile.                       | `createUserProfile(input: { username, ... })`                                          |
+| **Mutation** | `updateUserProfile`       | Update user profile details.                     | `updateUserProfile(userID: "userID", input: { bio, ... })`                             |
+| **Mutation** | `deleteUserProfile`       | Delete a user profile by its ID.                 | `deleteUserProfile(userID: "userID")`                                                  |
+| **Mutation** | `acceptApplication`       | Accept a job application for a listing.          | `acceptApplication(applicationID: "appID")`                                            |
+| **Mutation** | `rejectApplication`       | Reject a job application for a listing.          | `rejectApplication(applicationID: "appID")`                                            |
+| **Query**    | `getCategories`           | Get a list of all available job categories.      | `getCategories { id, name }`                                                           |
+| **Query**    | `getUsers`                | Get a list of all registered users.              | `getUsers { id, username }`                                                            |
+| **Query**    | `getApplications`         | Get all job applications for a job listing.      | `getApplications(jobID: "jobID") { id, user }`                                         |
+| **Mutation** | `createCategory`          | Create a new job category.                       | `createCategory(name: "Design")`                                                       |
+| **Mutation** | `updateCategory`          | Update a job category's details.                 | `updateCategory(id: "catID", name: "New Name")`                                        |
+| **Mutation** | `deleteCategory`          | Delete a job category by its ID.                 | `deleteCategory(id: "catID")`                                                          |
+| **Query**    | `getSimilarJobs`          | Get a list of jobs similar to a given job.       | `getSimilarJobs(jobID: "jobID") { id, title, company }`                                |
+| **Query**    | `getRecentJobs`           | Get a list of recently posted job listings.      | `getRecentJobs { title, company }`                                                     |
+| **Query**    | `getJobCountByCategory`   | Get the number of jobs in a specific category.   | `getJobCountByCategory(category: "IT")`                                                |
+| **Mutation** | `addBookmark`             | Add a job listing to a user's bookmarks.         | `addBookmark(userID: "userID", jobID: "jobID")`                                        |
+| **Mutation** | `removeBookmark`          | Remove a job listing from a user's bookmarks.    | `removeBookmark(userID: "userID", jobID: "jobID")`                                     |
+| **Mutation** | `createReview`            | Create a review for a specific job listing.      | `createReview(jobID: "jobID", userID: "userID", rating: 4, content: "Great company!")` |
+| **Mutation** | `updateReview`            | Update a review's content or rating.             | `updateReview(reviewID: "reviewID", content: "Updated review")`                        |
+| **Mutation** | `deleteReview`            | Delete a review by its ID.                       | `deleteReview(reviewID: "reviewID")`                                                   |
+| **Mutation** | `rateReview`              | Rate a review as helpful or unhelpful.           | `rateReview(reviewID: "reviewID", helpful: true)`                                      |
+| **Query**    | `getBookmarkedJobs`       | Get a list of jobs bookmarked by a user.         | `getBookmarkedJobs(userID: "userID") { id, title, company }`                           |
+| **Query**    | `getReviewsForJob`        | Get all reviews for a specific job listing.      | `getReviewsForJob(jobID: "jobID") { id, rating, content }`                             |
+| **Query**    | `getTopCategories`        | Get the most popular job categories.             | `getTopCategories(limit: 5) { name, jobCount }`                                        |
+| **Query**    | `getUserBookmarkCount`    | Get the number of bookmarks for a user.          | `getUserBookmarkCount(userID: "userID")`                                               |
+| **Mutation** | `createApplication`       | Create a new job application.                    | `createApplication(userID: "userID", jobID: "jobID")`                                  |
+| **Mutation** | `updateApplication`       | Update details of a job application.             | `updateApplication(applicationID: "appID", input: { status: "Reviewed" })`             |
+| **Mutation** | `deleteApplication`       | Delete a job application by its ID.              | `deleteApplication(applicationID: "appID")`                                            |
+| **Query**    | `getJobsWithApplications` | Get a list of jobs with associated applications. | `getJobsWithApplications { id, title, applicationCount }`                              |
+| **Query**    | `getOpenApplications`     | Get a list of open job applications.             | `getOpenApplications { id, user, job, status }`                                        |
 
 ## GraphQL Schema
 
@@ -262,10 +262,17 @@ type Mutation {
   deleteReview(reviewID: ID!): Review
   rateReview(reviewID: ID!, helpful: Boolean!): Review
   createApplication(userID: ID!, jobID: ID!): Application
-  updateApplication(applicationID: ID!, input: UpdateApplicationInput!): Application
+  updateApplication(
+    applicationID: ID!
+    input: UpdateApplicationInput!
+  ): Application
   deleteApplication(applicationID: ID!): Application
   updateApplicationStatus(applicationID: ID!, status: String!): Application
-  createReviewFeedback(reviewID: ID!, userID: ID!, helpful: Boolean!): ReviewFeedback
+  createReviewFeedback(
+    reviewID: ID!
+    userID: ID!
+    helpful: Boolean!
+  ): ReviewFeedback
   updateReviewFeedback(id: ID!, helpful: Boolean!): ReviewFeedback
   deleteReviewFeedback(id: ID!): ReviewFeedback
   createBookmark(userID: ID!, jobID: ID!): Bookmark

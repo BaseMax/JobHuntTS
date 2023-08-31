@@ -1,5 +1,5 @@
 import { injectable } from "tsyringe";
-import { Arg, Authorized, Mutation, Resolver } from "type-graphql";
+import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { Job } from "./entity/job-entity";
 import { CreateJobInput } from "./dto/create-job-input";
 import { JobService } from "./job-service";
@@ -12,6 +12,7 @@ export class JobResolver {
     private readonly jobService: JobService,
     private readonly categoryService: CategoryService
   ) {}
+
   @Mutation(() => Job, { nullable: true })
   @Authorized()
   async createJob(@Arg("input") createJobInput: CreateJobInput) {
@@ -26,5 +27,10 @@ export class JobResolver {
     );
 
     return job;
+  }
+
+  @Query(() => [Job], { nullable: true })
+  async getJobs() {
+    return this.jobService.getJobs();
   }
 }

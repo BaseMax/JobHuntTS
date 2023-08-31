@@ -1,4 +1,5 @@
 import { Field, ObjectType } from "type-graphql";
+import { Job } from "../../job/entity/job-entity";
 
 @ObjectType()
 export class Category {
@@ -7,6 +8,9 @@ export class Category {
 
   @Field()
   name: string;
+
+  @Field(()=>[Job])
+  jobs : Job[]
 
   @Field(() => Date)
   createdAt: Date;

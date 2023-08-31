@@ -22,4 +22,6 @@ export class CategoryResolver {
     }
     return this.categoryService.createCategory(createCategoryInput);
   }
+
+
 }

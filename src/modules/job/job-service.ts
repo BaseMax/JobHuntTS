@@ -41,7 +41,6 @@ export class JobService {
 
   async findByIdOrThrow(id: string): Promise<JobDocument | null> {
     const job = await JobModel.findById(id);
-    console.log(job);
 
     if (!job) throw new GraphQLError("there is no job with associated id");
     return job;
@@ -56,5 +55,9 @@ export class JobService {
         returnOriginal: false,
       }
     );
+  }
+
+  async deleteJob(id: string): Promise<JobDocument | null> {
+    return await JobModel.findByIdAndDelete(id);
   }
 }

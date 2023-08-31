@@ -58,4 +58,11 @@ export class JobResolver {
     const job = await this.jobService.findByIdOrThrow(updateJobInput.jobId);
     return this.jobService.updateJob(updateJobInput);
   }
+
+  @Mutation(() => Job, { nullable: true })
+  @Authorized()
+  async deleteJob(@Arg("input") mongo: Mongo) {
+    const job = await this.jobService.findByIdOrThrow(mongo.id);
+    return this.jobService.deleteJob(mongo.id);
+  }
 }

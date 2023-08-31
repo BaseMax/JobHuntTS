@@ -61,6 +61,7 @@ input Mongo {
 type Mutation {
   createCategory(input: CreateCategoryInput!): Category
   createJob(input: CreateJobInput!): Job
+  deleteJob(input: Mongo!): Job
   login(input: LoginInput!): AuthPayload
   refreshToken(refreshToken: String!): AuthPayload
   signup(input: SignupInput!): AuthPayload

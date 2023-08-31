@@ -50,15 +50,14 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 
 | Type         | Name                      | Description                                      | Example                                                                                |
 | ------------ | ------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| **Mutation** | `createJob`               | Create a new job .                               | ![create job](./screenshots/createJob.png)                                             |
 | **Query**    | `getJobs`                 | Get a list of all available jobs.                | ![get list of jobs ](./screenshots/getJobs.png)                                        |
 | **Query**    | `getJobById`              | Get details of a specific job by its ID.         | ![get job by id](./screenshots/getJobByID.png)                                         |
 | **Query**    | `getJobByTitle`           | Search for jobs by title.                        | ![get job by title ](./screenshots/getJobByTitle.png)                                  |
 | **Query**    | `getJobByCategory`        | Filter jobs by category.                         | ![get jobs by category](./screenshots/getJobsByCategory.png)                           |
 | **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.             | ![get featured jobs](./screenshots/getFeaturedJobs.png)                                |
-| **Query**    | `getUserProfile`          | Get the profile of a specific user.              | `getUserProfile(username: "john_doe")`                                                 |
-| **Query**    | `getUserApplications`     | Get applications...                              | `getUserApplications(userID: "userID")`                                                |
-| **Mutation** | `createJobListing`        | Create a new job listing.                        | `createJobListing(input: { title, ... })`                                              |
-| **Mutation** | `updateJobListing`        | Update details of an existing job listing.       | `updateJobListing(id: "jobID", input: { title, ... })`                                 |
+| **Query**    | `getUserApplications`     | Get applications...                              |                                                                                        |
+| **Mutation** | `updateJob`        | Update details of an existing job .       | `updateJobListing(id: "jobID", input: { title, ... })`                                 |
 | **Mutation** | `deleteJobListing`        | Delete a job listing by its ID.                  | `deleteJobListing(id: "jobID")`                                                        |
 | **Mutation** | `applyForJob`             | Apply for a job listing using user's profile.    | `applyForJob(jobID: "jobID", userID: "userID")`                                        |
 | **Mutation** | `withdrawApplication`     | Withdraw a job application by its ID.            | `withdrawApplication(applicationID: "appID")`                                          |

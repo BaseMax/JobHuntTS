@@ -26,4 +26,10 @@ export class JobService {
   async getJobById(id: string): Promise<JobDocument | null> {
     return JobModel.findById(id);
   }
+
+  async getJobByTitle(title: string): Promise<JobDocument[]> {
+    return JobModel.find({
+      title: { $regex: title, $options: "i" },
+    });
+  }
 }

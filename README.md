@@ -54,7 +54,7 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getJobById`              | Get details of a specific job by its ID.         | ![get job by id](./screenshots/getJobByID.png)                                         |
 | **Query**    | `getJobByTitle`           | Search for jobs by title.                        | ![get job by title ](./screenshots/getJobByTitle.png)                                  |
 | **Query**    | `getJobByCategory`        | Filter jobs by category.                         | ![get jobs by category](./screenshots/getJobsByCategory.png)                           |
-| **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.             | `getFeaturedJobs { title, company }`                                                   |
+| **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.             | ![get featured jobs](./screenshots/getFeaturedJobs.png)                                |
 | **Query**    | `getUserProfile`          | Get the profile of a specific user.              | `getUserProfile(username: "john_doe")`                                                 |
 | **Query**    | `getUserApplications`     | Get applications...                              | `getUserApplications(userID: "userID")`                                                |
 | **Mutation** | `createJobListing`        | Create a new job listing.                        | `createJobListing(input: { title, ... })`                                              |

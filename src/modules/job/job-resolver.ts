@@ -45,4 +45,9 @@ export class JobResolver {
   async getJobsByTitle(@Arg("input") search: Search) {
     return this.jobService.getJobByTitle(search.title);
   }
+
+  @Query(()=>[Job])
+  async getFeaturedJobs(){
+    return await this.jobService.getFeaturedJobs()
+  }
 }

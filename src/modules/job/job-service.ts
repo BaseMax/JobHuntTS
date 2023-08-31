@@ -32,4 +32,8 @@ export class JobService {
       title: { $regex: title, $options: "i" },
     });
   }
+
+  async getFeaturedJobs(): Promise<JobDocument[]> {
+    return JobModel.find({ featured: true });
+  }
 }

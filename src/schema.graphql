@@ -64,6 +64,7 @@ type Mutation {
   login(input: LoginInput!): AuthPayload
   refreshToken(refreshToken: String!): AuthPayload
   signup(input: SignupInput!): AuthPayload
+  updateJob(input: UpdateJobInput!): Job
 }
 
 type Query {
@@ -87,4 +88,16 @@ input SignupInput {
   email: String!
   name: String!
   password: String!
+}
+
+input UpdateJobInput {
+  categoryId: String
+  company: String
+  description: String
+  featured: Boolean
+  jobId: String!
+  location: String
+  requirements: [String!]
+  salary: String
+  title: String
 }

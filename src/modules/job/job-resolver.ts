@@ -6,6 +6,7 @@ import { JobService } from "./job-service";
 import { CategoryService } from "../category/category-service";
 import { Mongo } from "../common/mongoId-input";
 import { Search } from "./dto/search-job-input";
+import { UpdateJobInput } from "./dto/update-job-input";
 
 @injectable()
 @Resolver()
@@ -46,8 +47,15 @@ export class JobResolver {
     return this.jobService.getJobByTitle(search.title);
   }
 
-  @Query(()=>[Job])
-  async getFeaturedJobs(){
-    return await this.jobService.getFeaturedJobs()
+  @Query(() => [Job])
+  async getFeaturedJobs() {
+    return await this.jobService.getFeaturedJobs();
+  }
+
+  @Mutation(() => Job, { nullable: true })
+  @Authorized()
+  async updateJob(@Arg("input") updateJobInput: UpdateJobInput) {
+    const job = await this.jobService.findByIdOrThrow(updateJobInput.jobId);
+    return this.jobService.updateJob(updateJobInput);
   }
 }

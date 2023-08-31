@@ -1,5 +1,12 @@
-import { IsArray, IsBoolean, IsMongoId, IsString } from "class-validator";
+import {
+  IsArray,
+  IsBoolean,
+  IsMongoId,
+  IsOptional,
+  IsString,
+} from "class-validator";
 import { InputType, Field } from "type-graphql";
+import { JobDocument } from "../entity/job-document";
 
 @InputType()
 export class CreateJobInput {

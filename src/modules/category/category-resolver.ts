@@ -1,9 +1,10 @@
 import { injectable } from "tsyringe";
-import { Arg, Args, Authorized, Mutation, Resolver } from "type-graphql";
+import { Arg, Args, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { CreateCategoryInput } from "./dto/create-category-input";
 import { Category } from "./entity/category-entity";
 import { CategoryService } from "./category-service";
 import { GraphQLError } from "graphql";
+import { SearchCategoryInput } from "./dto/search-input";
 
 @injectable()
 @Resolver()
@@ -16,12 +17,18 @@ export class CategoryResolver {
       createCategoryInput.name
     );
 
-    
-    if(category){
-       throw new GraphQLError("there is already a category  with this name,please use that.")
+    if (category) {
+      throw new GraphQLError(
+        "there is already a category  with this name,please use that."
+      );
     }
     return this.categoryService.createCategory(createCategoryInput);
   }
 
-
+  @Query(() => Category, { nullable: true })
+  async getJobsByCategory(
+    @Arg("input") searchCategoryInput: SearchCategoryInput
+  ) {
+    return this.categoryService.getJobsByCategory(searchCategoryInput.name);
+  }
 }

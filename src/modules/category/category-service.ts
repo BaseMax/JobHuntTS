@@ -28,6 +28,13 @@ export class CategoryService {
     return category;
   }
 
+  async getJobsByCategory(
+    categoryName: string
+  ): Promise<CategoryDocument | null> {
+    return CategoryModel.findOne({
+      name: categoryName,
+    });
+  }
   async addJob(
     categoryId: string,
     job: JobDocument

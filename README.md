@@ -53,7 +53,7 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getJobs`                 | Get a list of all available jobs.                | ![get list of jobs ](./screenshots/getJobs.png)                                        |
 | **Query**    | `getJobById`              | Get details of a specific job by its ID.         | ![get job by id](./screenshots/getJobByID.png)                                         |
 | **Query**    | `getJobByTitle`           | Search for jobs by title.                        | ![get job by title ](./screenshots/getJobByTitle.png)                                  |
-| **Query**    | `getJobByCategory`        | Filter jobs by category.                         | `getJobByCategory(category: "Engineering")`                                            |
+| **Query**    | `getJobByCategory`        | Filter jobs by category.                         | ![get jobs by category](./screenshots/getJobsByCategory.png)                           |
 | **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.             | `getFeaturedJobs { title, company }`                                                   |
 | **Query**    | `getUserProfile`          | Get the profile of a specific user.              | `getUserProfile(username: "john_doe")`                                                 |
 | **Query**    | `getUserApplications`     | Get applications...                              | `getUserApplications(userID: "userID")`                                                |

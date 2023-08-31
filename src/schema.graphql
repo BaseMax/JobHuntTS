@@ -70,11 +70,16 @@ type Query {
   getHello: String!
   getJobById(input: Mongo!): Job
   getJobs: [Job!]
+  getJobsByCategory(input: SearchCategoryInput!): Category
   getJobsByTitle(input: Search!): [Job!]
 }
 
 input Search {
   title: String!
+}
+
+input SearchCategoryInput {
+  name: String!
 }
 
 input SignupInput {

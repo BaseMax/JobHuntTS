@@ -42,6 +42,7 @@ type Job {
   createdAt: DateTimeISO!
   description: String!
   featured: Boolean!
+  id: String!
   location: String!
   requirements: [String!]!
   salary: String!
@@ -51,6 +52,10 @@ type Job {
 input LoginInput {
   email: String!
   password: String!
+}
+
+input Mongo {
+  id: String!
 }
 
 type Mutation {
@@ -63,6 +68,7 @@ type Mutation {
 
 type Query {
   getHello: String!
+  getJobById(input: Mongo!): Job
   getJobs: [Job!]
 }
 

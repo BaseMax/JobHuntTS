@@ -22,4 +22,8 @@ export class JobService {
   async getJobs(): Promise<JobDocument[]> {
     return JobModel.find({});
   }
+
+  async getJobById(id: string): Promise<JobDocument | null> {
+    return JobModel.findById(id);
+  }
 }

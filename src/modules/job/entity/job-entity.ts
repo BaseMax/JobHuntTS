@@ -3,6 +3,9 @@ import { Field, ObjectType } from "type-graphql";
 @ObjectType()
 export class Job {
   @Field()
+  id : string
+  
+  @Field()
   title: string;
   @Field()
   company: string;

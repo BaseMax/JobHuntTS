@@ -4,6 +4,7 @@ import { Job } from "./entity/job-entity";
 import { CreateJobInput } from "./dto/create-job-input";
 import { JobService } from "./job-service";
 import { CategoryService } from "../category/category-service";
+import { Mongo } from "../common/mongoId-input";
 
 @injectable()
 @Resolver()
@@ -32,5 +33,10 @@ export class JobResolver {
   @Query(() => [Job], { nullable: true })
   async getJobs() {
     return this.jobService.getJobs();
+  }
+
+  @Query(() => Job, { nullable: true })
+  async getJobById(@Arg("input") mongo: Mongo) {
+    return this.jobService.getJobById(mongo.id);
   }
 }

@@ -58,8 +58,8 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.             | ![get featured jobs](./screenshots/getFeaturedJobs.png)                                |
 | **Query**    | `getUserApplications`     | Get applications...                              |                                                                                        |
 | **Mutation** | `updateJob`               | Update details of an existing job .              | ![update job](./screenshots/updateJob.png)                                             |
-| **Mutation** | `deleteJobListing`        | Delete a job listing by its ID.                  | `deleteJobListing(id: "jobID")`                                                        |
-| **Mutation** | `applyForJob`             | Apply for a job listing using user's profile.    | `applyForJob(jobID: "jobID", userID: "userID")`                                        |
+| **Mutation** | `deleteJob`               | delete an existing job .                         | ![delete job](./screenshots/deleteJob.png)                                             |
+| **Mutation** | `applyForJob`             | Apply for a job using user's profile.            | ![apply for job](./screenshots/applyToJob.png)                                         |
 | **Mutation** | `withdrawApplication`     | Withdraw a job application by its ID.            | `withdrawApplication(applicationID: "appID")`                                          |
 | **Mutation** | `createUserProfile`       | Create a new user profile.                       | `createUserProfile(input: { username, ... })`                                          |
 | **Mutation** | `updateUserProfile`       | Update user profile details.                     | `updateUserProfile(userID: "userID", input: { bio, ... })`                             |

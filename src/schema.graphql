@@ -3,6 +3,17 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Application {
+  createdAt: DateTimeISO!
+  id: String!
+  jobId: String!
+  userId: String!
+}
+
+input ApplicationInput {
+  jobId: String!
+}
+
 type AuthPayload {
   accessToken: String!
   name: String!
@@ -59,6 +70,7 @@ input Mongo {
 }
 
 type Mutation {
+  apply(input: ApplicationInput!): Application
   createCategory(input: CreateCategoryInput!): Category
   createJob(input: CreateJobInput!): Job
   deleteJob(input: Mongo!): Job

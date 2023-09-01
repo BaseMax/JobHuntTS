@@ -14,6 +14,7 @@ import { formatError } from "./modules/common/error-formater";
 import { CustomAuthChecker } from "./modules/auth/auth-checker";
 import { CategoryResolver } from "./modules/category/category-resolver";
 import { JobResolver } from "./modules/job/job-resolver";
+import { ApplicationResolver } from "./modules/application/application-resolver";
 dotenv.config();
 
 const port = process.env.Port || 3000;
@@ -21,7 +22,12 @@ const dbUri = process.env.DATABASE_URI as string;
 
 export async function createServer() {
   const schema = await buildSchema({
-    resolvers: [AuthResolver, CategoryResolver, JobResolver],
+    resolvers: [
+      AuthResolver,
+      CategoryResolver,
+      JobResolver,
+      ApplicationResolver,
+    ],
     emitSchemaFile: path.resolve(__dirname, "schema.graphql"),
     container: { get: (cls) => container.resolve(cls) },
     authChecker: CustomAuthChecker,

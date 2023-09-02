@@ -6,6 +6,7 @@ import { ApplicationService } from "./application-service";
 import { GetCurrentUserId } from "../common/get-current-userId";
 import { JobService } from "../job/job-service";
 import { GraphQLError } from "graphql";
+import { UpdateApplication } from "./dto/update-application-input";
 
 @Resolver()
 @injectable()
@@ -27,8 +28,18 @@ export class ApplicationResolver {
       applicationInput.jobId
     );
 
-    if(hasApplied)
-     throw new GraphQLError("You have already applied to this job.")
+    if (hasApplied)
+      throw new GraphQLError("You have already applied to this job.");
     return this.applicationService.apply(userId, applicationInput);
   }
+
+  @Mutation(() => Application, { nullable: true })
+  @Authorized()
+  async updateStatus(@Arg("input") updateApplication: UpdateApplication) {
+    const application = await this.applicationService.findByIdOrThrow(
+      updateApplication.applicationId
+    );
+    return await this.applicationService.updateStatus(updateApplication);
+  }
 }
+ 

@@ -11,6 +11,10 @@ export class Application {
   @Field()
   jobId: string;
 
+  @Field()
+  status: string;
+
+  
   @Field(() => Date)
   createdAt: Date;
 }

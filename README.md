@@ -61,11 +61,11 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Mutation** | `deleteJob`               | delete an existing job .                         | ![delete job](./screenshots/deleteJob.png)                                             |
 | **Mutation** | `applyForJob`             | Apply for a job using user's profile.            | ![apply for job](./screenshots/applyToJob.png)                                         |
 | **Mutation** | `withdrawApplication`     | Withdraw a job application by its ID.            | `withdrawApplication(applicationID: "appID")`                                          |
+| **Mutation** | `acceptApplication`       | Accept a job application for a job               | ![update job status](./screenshots/acceptApplication.png)                              |
+| **Mutation** | `rejectApplication`       | Reject a job application for a listing.          | `rejectApplication(applicationID: "appID")`                                            |
 | **Mutation** | `createUserProfile`       | Create a new user profile.                       | `createUserProfile(input: { username, ... })`                                          |
 | **Mutation** | `updateUserProfile`       | Update user profile details.                     | `updateUserProfile(userID: "userID", input: { bio, ... })`                             |
 | **Mutation** | `deleteUserProfile`       | Delete a user profile by its ID.                 | `deleteUserProfile(userID: "userID")`                                                  |
-| **Mutation** | `acceptApplication`       | Accept a job application for a listing.          | `acceptApplication(applicationID: "appID")`                                            |
-| **Mutation** | `rejectApplication`       | Reject a job application for a listing.          | `rejectApplication(applicationID: "appID")`                                            |
 | **Query**    | `getCategories`           | Get a list of all available job categories.      | `getCategories { id, name }`                                                           |
 | **Query**    | `getUsers`                | Get a list of all registered users.              | `getUsers { id, username }`                                                            |
 | **Query**    | `getApplications`         | Get all job applications for a job listing.      | `getApplications(jobID: "jobID") { id, user }`                                         |

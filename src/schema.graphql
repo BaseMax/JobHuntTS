@@ -7,6 +7,7 @@ type Application {
   createdAt: DateTimeISO!
   id: String!
   jobId: String!
+  status: String!
   userId: String!
 }
 
@@ -78,6 +79,7 @@ type Mutation {
   refreshToken(refreshToken: String!): AuthPayload
   signup(input: SignupInput!): AuthPayload
   updateJob(input: UpdateJobInput!): Job
+  updateStatus(input: UpdateApplication!): Application
 }
 
 type Query {
@@ -101,6 +103,17 @@ input SignupInput {
   email: String!
   name: String!
   password: String!
+}
+
+enum Status {
+  Accepted
+  Pending
+  Rejected
+}
+
+input UpdateApplication {
+  applicationId: String!
+  status: Status!
 }
 
 input UpdateJobInput {

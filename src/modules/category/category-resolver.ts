@@ -31,4 +31,9 @@ export class CategoryResolver {
   ) {
     return this.categoryService.getJobsByCategory(searchCategoryInput.name);
   }
+
+  @Query(() => [Category], { nullable: true })
+  async getCategories() {
+    return this.categoryService.getCategories();
+  }
 }

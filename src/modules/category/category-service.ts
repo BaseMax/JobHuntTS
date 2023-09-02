@@ -28,6 +28,10 @@ export class CategoryService {
     return category;
   }
 
+  async getCategories(): Promise<CategoryDocument[]> {
+    return await CategoryModel.find();
+  }
+
   async getJobsByCategory(
     categoryName: string
   ): Promise<CategoryDocument | null> {

@@ -87,6 +87,7 @@ type Mutation {
 }
 
 type Query {
+  getCategories: [Category!]
   getFeaturedJobs: [Job!]!
   getHello: String!
   getJobById(input: Mongo!): Job

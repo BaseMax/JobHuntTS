@@ -54,4 +54,8 @@ export class UserService {
       }
     );
   }
+
+  async deleteUserProfile(userId: string): Promise<UserDocument | null> {
+    return await UserModel.findByIdAndDelete(userId);
+  }
 }

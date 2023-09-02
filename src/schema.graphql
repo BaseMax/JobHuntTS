@@ -94,6 +94,7 @@ type Query {
   getJobs: [Job!]
   getJobsByCategory(input: SearchCategoryInput!): Category
   getJobsByTitle(input: Search!): [Job!]
+  getUserApplications: [Application!]
 }
 
 input Search {

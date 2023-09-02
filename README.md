@@ -56,7 +56,7 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getJobByTitle`           | Search for jobs by title.                        | ![get job by title ](./screenshots/getJobByTitle.png)                                  |
 | **Query**    | `getJobByCategory`        | Filter jobs by category.                         | ![get jobs by category](./screenshots/getJobsByCategory.png)                           |
 | **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.             | ![get featured jobs](./screenshots/getFeaturedJobs.png)                                |
-| **Query**    | `getUserApplications`     | Get applications...                              |                                                                                        |
+| **Query**    | `getUserApplications`     | Get user applications...                         | ![get user applications](./screenshots/getUserApplications.png)                        |
 | **Mutation** | `updateJob`               | Update details of an existing job .              | ![update job](./screenshots/updateJob.png)                                             |
 | **Mutation** | `deleteJob`               | delete an existing job .                         | ![delete job](./screenshots/deleteJob.png)                                             |
 | **Mutation** | `applyForJob`             | Apply for a job using user's profile.            | ![apply for job](./screenshots/applyToJob.png)                                         |

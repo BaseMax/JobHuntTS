@@ -48,4 +48,10 @@ export class ApplicationService {
   async withdrawApplication(id: string): Promise<ApplicationDocument | null> {
     return ApplicationModel.findByIdAndDelete(id);
   }
+
+  async getUserApplications(userId: string): Promise<ApplicationDocument[]> {
+    return await ApplicationModel.find({
+      userId: userId,
+    });
+  }
 }

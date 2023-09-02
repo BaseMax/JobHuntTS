@@ -1,4 +1,4 @@
-import { Arg, Authorized, Mutation, Resolver } from "type-graphql";
+import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { Application } from "./entity/application-entity";
 import { ApplicationInput } from "./dto/application-input";
 import { injectable } from "tsyringe";
@@ -48,5 +48,11 @@ export class ApplicationResolver {
   async withdraw(@Arg("input") mongo: Mongo) {
     const application = await this.applicationService.findByIdOrThrow(mongo.id);
     return await this.applicationService.withdrawApplication(mongo.id);
+  }
+
+  @Query(() => [Application], { nullable: true })
+  @Authorized()
+  async getUserApplications(@GetCurrentUserId() userId: string) {
+    return await this.applicationService.getUserApplications(userId);
   }
 }

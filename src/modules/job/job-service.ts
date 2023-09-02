@@ -25,6 +25,16 @@ export class JobService {
     return JobModel.find({});
   }
 
+  async getSimilarJobs(
+    categoryId: string,
+    jobId: string
+  ): Promise<JobDocument[]> {
+    return await JobModel.find({
+      categoryId: categoryId,
+      _id: { $ne: jobId },
+    });
+  }
+
   async getJobById(id: string): Promise<JobDocument | null> {
     return JobModel.findById(id);
   }

@@ -7,6 +7,7 @@ import { GraphQLError } from "graphql";
 import { SearchCategoryInput } from "./dto/search-input";
 import { Mongo } from "../common/mongoId-input";
 import { UpdateCategoryInput } from "./dto/update-category-input";
+import { CategoryAndCount } from "./entity/category-couent-entity";
 @injectable()
 @Resolver()
 export class CategoryResolver {
@@ -50,6 +51,26 @@ export class CategoryResolver {
         "there is already a category with this name exists."
       );
     return this.categoryService.updateCategory(updateCategoryInput);
+  }
+  @Query(() => CategoryAndCount, { nullable: true })
+  async getJobCountByCategory(
+    @Arg("input") searchCategoryInput: SearchCategoryInput
+  ) {
+    const category = await this.categoryService.findCategory(
+      searchCategoryInput.name
+    );
+    if (!category)
+      throw new GraphQLError("category with this name doesn't exists.");
+
+    const count = await this.categoryService.getJobCountByCategory(
+      searchCategoryInput.name
+    );
+    return {
+      name: category.name,
+      id: category._id,
+      countOfJobs: count,
+      createdAt: category.createdAt,
+    };
   }
 
   @Mutation(() => Category, { nullable: true })

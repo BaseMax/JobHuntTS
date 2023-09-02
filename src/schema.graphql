@@ -28,6 +28,13 @@ type Category {
   name: String!
 }
 
+type CategoryAndCount {
+  countOfJobs: Int!
+  createdAt: DateTimeISO!
+  id: String!
+  name: String!
+}
+
 input CreateCategoryInput {
   name: String!
 }
@@ -94,6 +101,7 @@ type Query {
   getFeaturedJobs: [Job!]!
   getHello: String!
   getJobById(input: Mongo!): Job
+  getJobCountByCategory(input: SearchCategoryInput!): CategoryAndCount
   getJobs: [Job!]
   getJobsByCategory(input: SearchCategoryInput!): Category
   getJobsByTitle(input: Search!): [Job!]

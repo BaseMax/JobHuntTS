@@ -56,6 +56,23 @@ export class CategoryService {
     );
   }
 
+  async getJobCountByCategory(name: string): Promise<number> {
+    const result = await CategoryModel.aggregate([
+      {
+        $match: {
+          name: name,
+        },
+      },
+      {
+        $project: {
+          jobCounts: { $size: "$jobs" },
+        },
+      },
+    ]);
+
+    return result[0].jobCounts;
+  }
+
   async updateCategory(
     updateCategoryInput: UpdateCategoryInput
   ): Promise<CategoryDocument | null> {

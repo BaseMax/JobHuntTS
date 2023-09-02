@@ -70,11 +70,11 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getUserProfiles`         | Get a list of all registered users.              | ![get user profiles](./screenshots/getUserProfiles.png)                                |
 | **Query**    | `getCategories`           | Get a list of all available job categories.      | ![get categories](./screenshots/getCategories.png)                                     |
 | **Mutation** | `createCategory`          | Create a new job category.                       | ![create category](./screenshots/createCategory.png)                                   |
-| **Mutation** | `updateCategory`          | Update a job category's details.                 | `updateCategory(id: "catID", name: "New Name")`                                        |
+| **Mutation** | `updateCategory`          | Update a job category's details.                 | ![update category](./screenshots/updateCategory.png)                                   |
 | **Mutation** | `deleteCategory`          | Delete a job category by its ID.                 | ![delete category ](./screenshots/deleteCategory.png)                                  |
 | **Query**    | `getSimilarJobs`          | Get a list of jobs similar to a given job.       | ![get similar jobs](./screenshots/getSimilarJobs.png)                                  |
-| **Query**    | `getRecentJobs`           | Get a list of recently posted job listings.      | `getRecentJobs { title, company }`                                                      |
-| **Query**    | `getJobCountByCategory`   | Get the number of jobs in a specific category.   | `getJobCountByCategory(category: "IT")`                                                |
+| **Query**    | `getRecentJobs`           | Get a list of recently posted job listings.      | ![get recent jobs](./screenshots/getRecentJobs.png)                                    |
+| **Query**    | `getJobCountByCategory`   | Get the number of jobs in a specific category.   | ![get job count by category](./screenshots/getJobCountByCategory.png)                  |
 | **Mutation** | `addBookmark`             | Add a job listing to a user's bookmarks.         | `addBookmark(userID: "userID", jobID: "jobID")`                                        |
 | **Mutation** | `removeBookmark`          | Remove a job listing from a user's bookmarks.    | `removeBookmark(userID: "userID", jobID: "jobID")`                                     |
 | **Mutation** | `createReview`            | Create a review for a specific job listing.      | `createReview(jobID: "jobID", userID: "userID", rating: 4, content: "Great company!")` |

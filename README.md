@@ -66,8 +66,8 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Mutation** | `signUp`                  | Create a new user profile.                       | ![sign up](./screenshots/signup.png)                                                   |
 | **Mutation** | `updateUserProfile`       | Update user profile                              | ![update user profile](./screenshots/updateUserProfile.png)                            |
 | **Mutation** | `deleteUserProfile`       | Delete a user profile by its ID.                 | ![delete user profile](./screenshots/deleteUserProfile.png)                            |
+| **Query**    | `getUserProfiles`         | Get a list of all registered users.              | ![get user profiles](./screenshots/getUserProfiles.png)                                |
 | **Query**    | `getCategories`           | Get a list of all available job categories.      | `getCategories { id, name }`                                                           |
-| **Query**    | `getUsers`                | Get a list of all registered users.              | `getUsers { id, username }`                                                            |
 | **Query**    | `getApplications`         | Get all job applications for a job listing.      | `getApplications(jobID: "jobID") { id, user }`                                         |
 | **Mutation** | `createCategory`          | Create a new job category.                       | `createCategory(name: "Design")`                                                       |
 | **Mutation** | `updateCategory`          | Update a job category's details.                 | `updateCategory(id: "catID", name: "New Name")`                                        |

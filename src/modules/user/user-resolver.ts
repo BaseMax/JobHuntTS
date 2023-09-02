@@ -23,4 +23,10 @@ export class UserResolver {
   async deleteProfile(@GetCurrentUserId() userId: string) {
     return await this.userService.deleteUserProfile(userId);
   }
+
+  @Mutation(() => [UserProfile], { nullable: true })
+  @Authorized()
+  async getUserProfiles() {
+    return await this.userService.getUsers();
+  }
 }

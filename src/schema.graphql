@@ -76,6 +76,7 @@ type Mutation {
   createJob(input: CreateJobInput!): Job
   deleteJob(input: Mongo!): Job
   deleteProfile: UserProfile!
+  getUserProfiles: [UserProfile!]
   login(input: LoginInput!): AuthPayload
   refreshToken(refreshToken: String!): AuthPayload
   signup(input: SignupInput!): AuthPayload

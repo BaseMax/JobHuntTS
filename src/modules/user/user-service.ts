@@ -55,6 +55,10 @@ export class UserService {
     );
   }
 
+  async getUsers(): Promise<UserDocument[]> {
+    return UserModel.find();
+  }
+
   async deleteUserProfile(userId: string): Promise<UserDocument | null> {
     return await UserModel.findByIdAndDelete(userId);
   }

@@ -71,7 +71,7 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getCategories`           | Get a list of all available job categories.      | ![get categories](./screenshots/getCategories.png)                                     |
 | **Mutation** | `createCategory`          | Create a new job category.                       | [create category](./screenshots/createCategory.png)                                    |
 | **Mutation** | `updateCategory`          | Update a job category's details.                 | `updateCategory(id: "catID", name: "New Name")`                                        |
-| **Mutation** | `deleteCategory`          | Delete a job category by its ID.                 | `deleteCategory(id: "catID")`                                                          |
+| **Mutation** | `deleteCategory`          | Delete a job category by its ID.                 | ![delete category ](./screenshots/deleteCategory.png)                                  |
 | **Query**    | `getSimilarJobs`          | Get a list of jobs similar to a given job.       | `getSimilarJobs(jobID: "jobID") { id, title, company }`                                |
 | **Query**    | `getRecentJobs`           | Get a list of recently posted job listings.      | `getRecentJobs { title, company }`                                                     |
 | **Query**    | `getJobCountByCategory`   | Get the number of jobs in a specific category.   | `getJobCountByCategory(category: "IT")`                                                |

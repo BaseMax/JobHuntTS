@@ -5,6 +5,7 @@ import { Category } from "./entity/category-entity";
 import { CategoryService } from "./category-service";
 import { GraphQLError } from "graphql";
 import { SearchCategoryInput } from "./dto/search-input";
+import { Mongo } from "../common/mongoId-input";
 
 @injectable()
 @Resolver()
@@ -35,5 +36,11 @@ export class CategoryResolver {
   @Query(() => [Category], { nullable: true })
   async getCategories() {
     return this.categoryService.getCategories();
+  }
+
+  @Mutation(() => Category, { nullable: true })
+  async deleteCategory(@Arg("input") mongo: Mongo) {
+    const category = await this.categoryService.findByIdOrThrow(mongo.id);
+    return this.categoryService.deleteCategory(mongo.id);
   }
 }

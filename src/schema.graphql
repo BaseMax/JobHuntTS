@@ -74,6 +74,7 @@ type Mutation {
   apply(input: ApplicationInput!): Application
   createCategory(input: CreateCategoryInput!): Category
   createJob(input: CreateJobInput!): Job
+  deleteCategory(input: Mongo!): Category
   deleteJob(input: Mongo!): Job
   deleteProfile: UserProfile!
   getUserProfiles: [UserProfile!]

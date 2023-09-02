@@ -4,6 +4,7 @@ import { CategoryDocument } from "./entity/category-document";
 import { CategoryModel } from "./entity/category-model";
 import { GraphQLError } from "graphql";
 import { JobDocument } from "../job/entity/job-document";
+import { JobModel } from "../job/entity/job-model";
 
 @injectable()
 export class CategoryService {
@@ -52,5 +53,13 @@ export class CategoryService {
         returnOriginal: false,
       }
     );
+  }
+
+  async deleteCategory(id: string): Promise<CategoryDocument | null> {
+    const deletedJobs = await JobModel.deleteMany({
+      categoryId: id,
+    });
+
+    return await CategoryModel.findByIdAndDelete(id);
   }
 }

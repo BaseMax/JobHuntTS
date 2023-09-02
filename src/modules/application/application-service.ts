@@ -44,4 +44,8 @@ export class ApplicationService {
       }
     );
   }
+
+  async withdrawApplication(id: string): Promise<ApplicationDocument | null> {
+    return ApplicationModel.findByIdAndDelete(id);
+  }
 }

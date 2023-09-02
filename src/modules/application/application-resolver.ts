@@ -7,6 +7,7 @@ import { GetCurrentUserId } from "../common/get-current-userId";
 import { JobService } from "../job/job-service";
 import { GraphQLError } from "graphql";
 import { UpdateApplication } from "./dto/update-application-input";
+import { Mongo } from "../common/mongoId-input";
 
 @Resolver()
 @injectable()
@@ -41,5 +42,11 @@ export class ApplicationResolver {
     );
     return await this.applicationService.updateStatus(updateApplication);
   }
+
+  @Mutation(() => Application, { nullable: true })
+  @Authorized()
+  async withdraw(@Arg("input") mongo: Mongo) {
+    const application = await this.applicationService.findByIdOrThrow(mongo.id);
+    return await this.applicationService.withdrawApplication(mongo.id);
+  }
 }
- 

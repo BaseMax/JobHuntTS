@@ -80,6 +80,7 @@ type Mutation {
   signup(input: SignupInput!): AuthPayload
   updateJob(input: UpdateJobInput!): Job
   updateStatus(input: UpdateApplication!): Application
+  withdraw(input: Mongo!): Application
 }
 
 type Query {

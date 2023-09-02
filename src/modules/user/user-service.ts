@@ -3,6 +3,7 @@ import { ICreateUserInput } from "../../interfaces/create-user-input";
 import { UserDocument } from "./entity/user-document";
 import { UserModel } from "./entity/user-model";
 import * as argon2 from "argon2";
+import { UpdateUserProfile } from "./dto/update-user-input";
 
 @injectable()
 export class UserService {
@@ -17,7 +18,7 @@ export class UserService {
     return UserModel.findOne({
       email: email,
     });
-}
+  }
   async updateRefreshToken(
     userId: string,
     refreshToken: string
@@ -25,5 +26,32 @@ export class UserService {
     return UserModel.findByIdAndUpdate(userId, {
       $set: { refreshToken: await argon2.hash(refreshToken) },
     });
+  }
+
+  async updateUserProfile(
+    userId: string,
+    updateUserProfile: UpdateUserProfile
+  ): Promise<UserDocument | null> {
+    console.log(userId);
+
+    const data: any = {};
+    if (updateUserProfile.name) {
+      data.name = updateUserProfile.name;
+    }
+
+    if (updateUserProfile.password) {
+      data.password = await argon2.hash(updateUserProfile.password);
+    }
+    data.refreshToken = null;
+    return UserModel.findByIdAndUpdate(
+      userId,
+      {
+        $set: data,
+      },
+
+      {
+        returnOriginal: false,
+      }
+    );
   }
 }

@@ -79,6 +79,7 @@ type Mutation {
   refreshToken(refreshToken: String!): AuthPayload
   signup(input: SignupInput!): AuthPayload
   updateJob(input: UpdateJobInput!): Job
+  updateProfile(input: UpdateUserProfile!): UserProfile!
   updateStatus(input: UpdateApplication!): Application
   withdraw(input: Mongo!): Application
 }
@@ -127,4 +128,14 @@ input UpdateJobInput {
   requirements: [String!]
   salary: String
   title: String
+}
+
+input UpdateUserProfile {
+  name: String!
+  password: String!
+}
+
+type UserProfile {
+  email: String!
+  name: String!
 }

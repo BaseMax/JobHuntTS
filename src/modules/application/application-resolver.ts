@@ -55,4 +55,10 @@ export class ApplicationResolver {
   async getUserApplications(@GetCurrentUserId() userId: string) {
     return await this.applicationService.getUserApplications(userId);
   }
+
+  @Query(() => [Application], { nullable: true })
+  @Authorized()
+  async getApplications(@Arg("input") mongo: Mongo) {
+    return await this.applicationService.getApplications(mongo.id);
+  }
 }

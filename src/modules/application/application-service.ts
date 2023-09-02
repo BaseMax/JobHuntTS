@@ -54,4 +54,10 @@ export class ApplicationService {
       userId: userId,
     });
   }
+
+  async getApplications(jobId: string): Promise<ApplicationDocument[]> {
+    return ApplicationModel.find({
+      jobId: jobId,
+    });
+  }
 }

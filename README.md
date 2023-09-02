@@ -64,11 +64,11 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Mutation** | `acceptApplication`       | Accept a job application for a job               | ![update job status](./screenshots/acceptApplication.png)                              |
 | **Mutation** | `rejectApplication`       | Reject a job application for a job.              | ![reject application](./screenshots/rejectApplication.png)                             |
 | **Mutation** | `signUp`                  | Create a new user profile.                       | ![sign up](./screenshots/signup.png)                                                   |
+| **Query**    | `getApplications`         | Get all job applications for a job listing.      | ![get applications](./screenshots/getApplications.png)                                 |
 | **Mutation** | `updateUserProfile`       | Update user profile                              | ![update user profile](./screenshots/updateUserProfile.png)                            |
 | **Mutation** | `deleteUserProfile`       | Delete a user profile by its ID.                 | ![delete user profile](./screenshots/deleteUserProfile.png)                            |
 | **Query**    | `getUserProfiles`         | Get a list of all registered users.              | ![get user profiles](./screenshots/getUserProfiles.png)                                |
 | **Query**    | `getCategories`           | Get a list of all available job categories.      | ![get categories](./screenshots/getCategories.png)                                     |
-| **Query**    | `getApplications`         | Get all job applications for a job listing.      | `getApplications(jobID: "jobID") { id, user }`                                         |
 | **Mutation** | `createCategory`          | Create a new job category.                       | [create category](./screenshots/createCategory.png)                                    |
 | **Mutation** | `updateCategory`          | Update a job category's details.                 | `updateCategory(id: "catID", name: "New Name")`                                        |
 | **Mutation** | `deleteCategory`          | Delete a job category by its ID.                 | `deleteCategory(id: "catID")`                                                          |

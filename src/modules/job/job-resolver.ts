@@ -57,8 +57,13 @@ export class JobResolver {
     const job = await this.jobService.findByIdOrThrow(mongo.id);
     const categoryId = job?.categoryId.toString() as string;
 
-    return await this.jobService.getSimilarJobs(categoryId, mongo.id  );
+    return await this.jobService.getSimilarJobs(categoryId, mongo.id);
   }
+
+  @Query(() => [Job])
+  async getRecentJobs() {
+    return await this.jobService.getRecentJobs();
+  } 
 
   @Mutation(() => Job, { nullable: true })
   @Authorized()

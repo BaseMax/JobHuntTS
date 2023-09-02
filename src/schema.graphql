@@ -96,6 +96,7 @@ type Query {
   getJobs: [Job!]
   getJobsByCategory(input: SearchCategoryInput!): Category
   getJobsByTitle(input: Search!): [Job!]
+  getRecentJobs: [Job!]!
   getSimilarJobs(input: Mongo!): [Job!]!
   getUserApplications: [Application!]
 }

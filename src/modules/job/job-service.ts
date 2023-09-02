@@ -55,6 +55,14 @@ export class JobService {
     if (!job) throw new GraphQLError("there is no job with associated id");
     return job;
   }
+
+  async getRecentJobs(): Promise<JobDocument[]> {
+    return JobModel.find({}).sort({
+      createdAt: -1,
+    });
+  }
+
+  
   async updateJob(updateJobInput: UpdateJobInput): Promise<JobDocument | null> {
     return await JobModel.findByIdAndUpdate(
       updateJobInput.jobId,

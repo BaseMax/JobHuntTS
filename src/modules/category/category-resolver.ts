@@ -6,7 +6,7 @@ import { CategoryService } from "./category-service";
 import { GraphQLError } from "graphql";
 import { SearchCategoryInput } from "./dto/search-input";
 import { Mongo } from "../common/mongoId-input";
-
+import { UpdateCategoryInput } from "./dto/update-category-input";
 @injectable()
 @Resolver()
 export class CategoryResolver {
@@ -36,6 +36,20 @@ export class CategoryResolver {
   @Query(() => [Category], { nullable: true })
   async getCategories() {
     return this.categoryService.getCategories();
+  }
+
+  @Mutation(() => Category, { nullable: true })
+  @Authorized()
+  async updateCategory(@Arg("input") updateCategoryInput: UpdateCategoryInput) {
+    const category = await this.categoryService.findCategory(
+      updateCategoryInput.name
+    );
+
+    if (category)
+      throw new GraphQLError(
+        "there is already a category with this name exists."
+      );
+    return this.categoryService.updateCategory(updateCategoryInput);
   }
 
   @Mutation(() => Category, { nullable: true })

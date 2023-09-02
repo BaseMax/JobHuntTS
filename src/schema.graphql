@@ -81,6 +81,7 @@ type Mutation {
   login(input: LoginInput!): AuthPayload
   refreshToken(refreshToken: String!): AuthPayload
   signup(input: SignupInput!): AuthPayload
+  updateCategory(input: UpdateCategoryInput!): Category
   updateJob(input: UpdateJobInput!): Job
   updateProfile(input: UpdateUserProfile!): UserProfile!
   updateStatus(input: UpdateApplication!): Application
@@ -124,6 +125,11 @@ enum Status {
 input UpdateApplication {
   applicationId: String!
   status: Status!
+}
+
+input UpdateCategoryInput {
+  categoryId: String!
+  name: String!
 }
 
 input UpdateJobInput {

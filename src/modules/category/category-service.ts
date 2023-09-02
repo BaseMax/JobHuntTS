@@ -5,6 +5,7 @@ import { CategoryModel } from "./entity/category-model";
 import { GraphQLError } from "graphql";
 import { JobDocument } from "../job/entity/job-document";
 import { JobModel } from "../job/entity/job-model";
+import { UpdateCategoryInput } from "./dto/update-category-input";
 
 @injectable()
 export class CategoryService {
@@ -55,6 +56,21 @@ export class CategoryService {
     );
   }
 
+  async updateCategory(
+    updateCategoryInput: UpdateCategoryInput
+  ): Promise<CategoryDocument | null> {
+    return CategoryModel.findByIdAndUpdate(
+      updateCategoryInput.categoryId,
+      {
+        $set: {
+          name: updateCategoryInput.name,
+        },
+      },
+      {
+        returnOriginal: false,
+      }
+    );
+  }
   async deleteCategory(id: string): Promise<CategoryDocument | null> {
     const deletedJobs = await JobModel.deleteMany({
       categoryId: id,

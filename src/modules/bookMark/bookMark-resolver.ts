@@ -8,6 +8,7 @@ import { JobService } from "../job/job-service";
 import { GraphQLError } from "graphql";
 import { Mongo } from "../common/mongoId-input";
 import { Job } from "../job/entity/job-entity";
+import { BookMarkAndCount } from "./entity/bookMark-count-entity";
 
 @Resolver()
 @injectable()
@@ -57,5 +58,28 @@ export class BookMarkResolver {
   @Authorized()
   async getBookedMarkJobs(@GetCurrentUserId() userId: string) {
     return await this.bookMarkService.getBookedMarkJobs(userId);
+  }
+
+  @Query(() => BookMarkAndCount, { nullable: true })
+  @Authorized()
+  async getUserBookmarkCount(
+    @GetCurrentUserId() userId: string
+  ): Promise<BookMarkAndCount | null> {
+    const bookMark = await this.bookMarkService.getBookMark(userId);
+    console.log(bookMark);
+
+    if (!bookMark) {
+      return null;
+    }
+    const countOfJobs = await this.bookMarkService.getJobCountInBookMark(
+      userId
+    );
+    return {
+      id: bookMark?._id,
+      userId: bookMark.userId.toString(),
+      jobsId: bookMark?.jobsId.map((j) => j.toString()),
+      countOfJobs: countOfJobs,
+      createdAt: bookMark.createdAt,
+    };
   }
 }

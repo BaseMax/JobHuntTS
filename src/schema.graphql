@@ -23,6 +23,15 @@ type AuthPayload {
 
 type BookMark {
   createdAt: DateTimeISO!
+  id: String!
+  jobsId: [String!]!
+  userId: String!
+}
+
+type BookMarkAndCount {
+  countOfJobs: Int!
+  createdAt: DateTimeISO!
+  id: String!
   jobsId: [String!]!
   userId: String!
 }
@@ -121,6 +130,7 @@ type Query {
   getRecentJobs: [Job!]!
   getSimilarJobs(input: Mongo!): [Job!]!
   getUserApplications: [Application!]
+  getUserBookmarkCount: BookMarkAndCount
 }
 
 input Search {

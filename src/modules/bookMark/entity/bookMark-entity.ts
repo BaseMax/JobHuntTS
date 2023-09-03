@@ -1,15 +1,16 @@
 import { Field, ObjectType } from "type-graphql";
 
-
 @ObjectType()
-export  class BookMark{
+export class BookMark {
+  @Field()
+  id: string;
 
-    @Field()
-    userId : string
+  @Field()
+  userId: string;
 
-    @Field(()=>[String])
-    jobsId : string[]
+  @Field(() => [String])
+  jobsId: string[];
 
-    @Field(()=>Date)
-    createdAt :Date
+  @Field(() => Date)
+  createdAt: Date;
 }

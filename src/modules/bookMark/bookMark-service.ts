@@ -54,6 +54,10 @@ export class BookMarkService {
     return bookMark ? true : false;
   }
 
+  async getBookMark(userId: string): Promise<BookMarkDocument | null> {
+    return await BookMarkModel.findOne({ userId: userId });
+  }
+
   async hasBookedMarkJob(userId: string, jobId: string): Promise<boolean> {
     const bookMark = await BookMarkModel.findOne({
       userId: userId,
@@ -94,5 +98,22 @@ export class BookMarkService {
       },
     ]);
     return result[0].bookmarkedJobs;
+  }
+
+  async getJobCountInBookMark(userId: string): Promise<number> {
+    const result = await BookMarkModel.aggregate([
+      {
+        $match: {
+          userId: new mongoose.Types.ObjectId(userId),
+        },
+      },
+      {
+        $project: {
+          jobCounts: { $size: "$jobsId" },
+        },
+      },
+    ]);
+
+    return result[0].jobCounts;
   }
 }

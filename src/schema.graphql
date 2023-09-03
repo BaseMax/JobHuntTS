@@ -21,6 +21,12 @@ type AuthPayload {
   refreshToken: String!
 }
 
+type BookMark {
+  createdAt: DateTimeISO!
+  jobsId: [String!]!
+  userId: String!
+}
+
 type Category {
   createdAt: DateTimeISO!
   id: String!
@@ -33,6 +39,10 @@ type CategoryAndCount {
   createdAt: DateTimeISO!
   id: String!
   name: String!
+}
+
+input CreateBookMarkInput {
+  jobId: String!
 }
 
 input CreateCategoryInput {
@@ -78,6 +88,7 @@ input Mongo {
 }
 
 type Mutation {
+  addBookMark(input: CreateBookMarkInput!): BookMark!
   apply(input: ApplicationInput!): Application
   createCategory(input: CreateCategoryInput!): Category
   createJob(input: CreateJobInput!): Job

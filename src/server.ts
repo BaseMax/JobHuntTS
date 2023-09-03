@@ -16,6 +16,7 @@ import { CategoryResolver } from "./modules/category/category-resolver";
 import { JobResolver } from "./modules/job/job-resolver";
 import { ApplicationResolver } from "./modules/application/application-resolver";
 import { UserResolver } from "./modules/user/user-resolver";
+import { BookMarkResolver } from "./modules/bookMark/bookMark-resolver";
 dotenv.config();
 
 const port = process.env.Port || 3000;
@@ -28,7 +29,8 @@ export async function createServer() {
       CategoryResolver,
       JobResolver,
       ApplicationResolver,
-      UserResolver
+      UserResolver,
+      BookMarkResolver,
     ],
     emitSchemaFile: path.resolve(__dirname, "schema.graphql"),
     container: { get: (cls) => container.resolve(cls) },

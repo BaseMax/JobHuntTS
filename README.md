@@ -75,7 +75,7 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getSimilarJobs`          | Get a list of jobs similar to a given job.       | ![get similar jobs](./screenshots/getSimilarJobs.png)                                  |
 | **Query**    | `getRecentJobs`           | Get a list of recently posted job listings.      | ![get recent jobs](./screenshots/getRecentJobs.png)                                    |
 | **Query**    | `getJobCountByCategory`   | Get the number of jobs in a specific category.   | ![get job count by category](./screenshots/getJobCountByCategory.png)                  |
-| **Mutation** | `addBookmark`             | Add a job listing to a user's bookmarks.         | `addBookmark(userID: "userID", jobID: "jobID")`                                        |
+| **Mutation** | `addBookmark`             | Add a job listing to a user's bookmarks.         | ![add book mark](./screenshots/addBookMark.png)                                        |
 | **Mutation** | `removeBookmark`          | Remove a job listing from a user's bookmarks.    | `removeBookmark(userID: "userID", jobID: "jobID")`                                     |
 | **Mutation** | `createReview`            | Create a review for a specific job listing.      | `createReview(jobID: "jobID", userID: "userID", rating: 4, content: "Great company!")` |
 | **Mutation** | `updateReview`            | Update a review's content or rating.             | `updateReview(reviewID: "reviewID", content: "Updated review")`                        |

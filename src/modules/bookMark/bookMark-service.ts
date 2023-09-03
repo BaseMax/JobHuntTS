@@ -52,6 +52,14 @@ export class BookMarkService {
     return bookMark ? true : false;
   }
 
+  async hasBookedMarkJob(userId: string, jobId: string): Promise<boolean> {
+    const bookMark = await BookMarkModel.findOne({
+      userId: userId,
+      jobsId: jobId,
+    });
+
+    return bookMark ? true : false;
+  }
   async verifyBookedMarkJob(
     userId: string,
     jobId: string

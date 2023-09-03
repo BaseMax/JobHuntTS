@@ -75,16 +75,16 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getSimilarJobs`          | Get a list of jobs similar to a given job.       | ![get similar jobs](./screenshots/getSimilarJobs.png)                                  |
 | **Query**    | `getRecentJobs`           | Get a list of recently posted job listings.      | ![get recent jobs](./screenshots/getRecentJobs.png)                                    |
 | **Query**    | `getJobCountByCategory`   | Get the number of jobs in a specific category.   | ![get job count by category](./screenshots/getJobCountByCategory.png)                  |
-| **Mutation** | `addBookmark`             | Add a job listing to a user's bookmarks.         | ![add book mark](./screenshots/addBookMark.png)                                        |
-| **Mutation** | `removeBookmark`          | Remove a job listing from a user's bookmarks.    | `removeBookmark(userID: "userID", jobID: "jobID")`                                     |
+| **Mutation** | `addBookmark`             | Add a job to a user's bookmarks.                 | ![add book mark](./screenshots/addBookMark.png)                                        |
+| **Mutation** | `removeBookmark`          | Remove a job from a user's bookmarks.            | ![remove job from book marks](./screenshots/removeBookMark.png)                        |
+| **Query**    | `getBookmarkedJobs`       | Get a list of jobs bookmarked by a user.         | `getBookmarkedJobs(userID: "userID") { id, title, company }`                           |
+| **Query**    | `getUserBookmarkCount`    | Get the number of bookmarks for a user.          | `getUserBookmarkCount(userID: "userID")`                                               |
 | **Mutation** | `createReview`            | Create a review for a specific job listing.      | `createReview(jobID: "jobID", userID: "userID", rating: 4, content: "Great company!")` |
 | **Mutation** | `updateReview`            | Update a review's content or rating.             | `updateReview(reviewID: "reviewID", content: "Updated review")`                        |
 | **Mutation** | `deleteReview`            | Delete a review by its ID.                       | `deleteReview(reviewID: "reviewID")`                                                   |
 | **Mutation** | `rateReview`              | Rate a review as helpful or unhelpful.           | `rateReview(reviewID: "reviewID", helpful: true)`                                      |
-| **Query**    | `getBookmarkedJobs`       | Get a list of jobs bookmarked by a user.         | `getBookmarkedJobs(userID: "userID") { id, title, company }`                           |
 | **Query**    | `getReviewsForJob`        | Get all reviews for a specific job listing.      | `getReviewsForJob(jobID: "jobID") { id, rating, content }`                             |
 | **Query**    | `getTopCategories`        | Get the most popular job categories.             | `getTopCategories(limit: 5) { name, jobCount }`                                        |
-| **Query**    | `getUserBookmarkCount`    | Get the number of bookmarks for a user.          | `getUserBookmarkCount(userID: "userID")`                                               |
 | **Mutation** | `createApplication`       | Create a new job application.                    | `createApplication(userID: "userID", jobID: "jobID")`                                  |
 | **Mutation** | `updateApplication`       | Update details of a job application.             | `updateApplication(applicationID: "appID", input: { status: "Reviewed" })`             |
 | **Mutation** | `deleteApplication`       | Delete a job application by its ID.              | `deleteApplication(applicationID: "appID")`                                            |

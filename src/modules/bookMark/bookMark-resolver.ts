@@ -5,6 +5,8 @@ import { CreateBookMarkInput } from "./dto/bookMark-input";
 import { GetCurrentUserId } from "../common/get-current-userId";
 import { BookMarkService } from "./bookMark-service";
 import { JobService } from "../job/job-service";
+import { GraphQLError } from "graphql";
+import { Mongo } from "../common/mongoId-input";
 
 @Resolver()
 @injectable()
@@ -31,5 +33,22 @@ export class BookMarkResolver {
     return hasBookMark
       ? this.bookMarkService.addBookMark(userId, createBookMarkInput.jobId)
       : this.bookMarkService.createBookMark(userId, createBookMarkInput.jobId);
+  }
+
+  @Mutation(() => BookMark, { nullable: true })
+  @Authorized()
+  async removeBookMark(
+    @Arg("input") removeBookMarkInput: Mongo,
+    @GetCurrentUserId() userId: string
+  ) {
+    const job = await this.jobService.findByIdOrThrow(removeBookMarkInput.id);
+    const hasBookedMarkJob = await this.bookMarkService.hasBookedMarkJob(
+      userId,
+      removeBookMarkInput.id
+    );
+
+    if (!hasBookedMarkJob)
+      throw new GraphQLError("You haven't booked mark this job .");
+    return this.bookMarkService.removeBookMark(userId, removeBookMarkInput.id);
   }
 }

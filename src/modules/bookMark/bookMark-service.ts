@@ -1,6 +1,8 @@
 import { GraphQLError } from "graphql";
 import { BookMarkDocument } from "./entity/bookMark-document";
 import { BookMarkModel } from "./entity/bookMark-model";
+import mongoose from "mongoose";
+import { JobDocument } from "../job/entity/job-document";
 export class BookMarkService {
   async createBookMark(
     userId: string,
@@ -73,5 +75,24 @@ export class BookMarkService {
       throw new GraphQLError("you have already booked mark this job");
     }
     return bookMarkedJob;
+  }
+
+  async getBookedMarkJobs(userId: string): Promise<JobDocument[]> {
+    const result = await BookMarkModel.aggregate([
+      {
+        $match: {
+          userId: new mongoose.Types.ObjectId(userId),
+        },
+      },
+      {
+        $lookup: {
+          from: "jobs",
+          localField: "jobsId",
+          foreignField: "_id",
+          as: "bookmarkedJobs",
+        },
+      },
+    ]);
+    return result[0].bookmarkedJobs;
   }
 }

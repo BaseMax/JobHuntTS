@@ -63,7 +63,7 @@ export class JobResolver {
   @Query(() => [Job])
   async getRecentJobs() {
     return await this.jobService.getRecentJobs();
-  } 
+  }
 
   @Mutation(() => Job, { nullable: true })
   @Authorized()

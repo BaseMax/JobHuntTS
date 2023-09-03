@@ -1,5 +1,5 @@
 import { injectable } from "tsyringe";
-import { Arg, Authorized, Mutation, Resolver } from "type-graphql";
+import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { BookMark } from "./entity/bookMark-entity";
 import { CreateBookMarkInput } from "./dto/bookMark-input";
 import { GetCurrentUserId } from "../common/get-current-userId";
@@ -7,6 +7,7 @@ import { BookMarkService } from "./bookMark-service";
 import { JobService } from "../job/job-service";
 import { GraphQLError } from "graphql";
 import { Mongo } from "../common/mongoId-input";
+import { Job } from "../job/entity/job-entity";
 
 @Resolver()
 @injectable()
@@ -50,5 +51,11 @@ export class BookMarkResolver {
     if (!hasBookedMarkJob)
       throw new GraphQLError("You haven't booked mark this job .");
     return this.bookMarkService.removeBookMark(userId, removeBookMarkInput.id);
+  }
+
+  @Query(() => [Job], { nullable: true })
+  @Authorized()
+  async getBookedMarkJobs(@GetCurrentUserId() userId: string) {
+    return await this.bookMarkService.getBookedMarkJobs(userId);
   }
 }

@@ -119,6 +119,7 @@ type Mutation {
   updateCategory(input: UpdateCategoryInput!): Category
   updateJob(input: UpdateJobInput!): Job
   updateProfile(input: UpdateUserProfile!): UserProfile!
+  updateReview(input: UpdateReviewInput!): Review!
   updateStatus(input: UpdateApplication!): Application
   withdraw(input: Mongo!): Application
 }
@@ -188,6 +189,12 @@ input UpdateJobInput {
   requirements: [String!]
   salary: String
   title: String
+}
+
+input UpdateReviewInput {
+  content: String
+  rating: Float
+  reviewId: String!
 }
 
 input UpdateUserProfile {

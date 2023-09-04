@@ -80,7 +80,7 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getBookmarkedJobs`       | Get a list of jobs bookmarked by a user.         | ![get booked mark jobs](./screenshots/getBookedMarkJobs.png)          |
 | **Query**    | `getUserBookmarkCount`    | Get the number of bookmarks for a user.          | ![get booked mark jobs](./screenshots/getBookMarkCountOfJobs.png)     |
 | **Mutation** | `createReview`            | Create a review for a specific a job.            | ![create review](./screenshots/createReview.png)                      |
-| **Mutation** | `updateReview`            | Update a review's content or rating.             | `updateReview(reviewID: "reviewID", content: "Updated review")`       |
+| **Mutation** | `updateReview`            | Update a review's content or rating.             | ![update review](./screenshots/updateReview.png)                      |
 | **Mutation** | `deleteReview`            | Delete a review by its ID.                       | `deleteReview(reviewID: "reviewID")`                                  |
 | **Mutation** | `rateReview`              | Rate a review as helpful or unhelpful.           | `rateReview(reviewID: "reviewID", helpful: true)`                     |
 | **Query**    | `getReviewsForJob`        | Get all reviews for a specific job listing.      | `getReviewsForJob(jobID: "jobID") { id, rating, content }`            |

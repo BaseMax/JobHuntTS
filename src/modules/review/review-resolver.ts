@@ -4,6 +4,7 @@ import { Review } from "./entity/review-entity";
 import { CreateReviewInput } from "./dto/create-review-input";
 import { ReviewService } from "./review-service";
 import { GetCurrentUserId } from "../common/get-current-userId";
+import { UpdateReviewInput } from "./dto/update-review-input";
 
 @Resolver()
 @injectable()
@@ -17,5 +18,19 @@ export class ReviewResolver {
     @GetCurrentUserId() userId: string
   ) {
     return this.reviewService.createReview(userId, createReviewInput);
+  }
+
+  @Mutation(() => Review)
+  @Authorized()
+  async updateReview(
+    @Arg("input") updateReviewInput: UpdateReviewInput,
+    @GetCurrentUserId() userId: string
+  ) {
+    const review = await this.reviewService.canModify(
+      userId,
+      updateReviewInput.reviewId
+    );
+
+    return await this.reviewService.updateReview(updateReviewInput);
   }
 }

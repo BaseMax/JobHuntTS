@@ -1,0 +1,21 @@
+version: "3.6"
+services:
+  app:
+    build:
+      context: .
+      target: development
+    depends_on:
+      - db
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 4000:4000
+    environment:
+      - DATABASE_URI=mongodb://db:27017/dev
+      - NODE_ENV=development
+      - SECRET=secret
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - 27018:27017

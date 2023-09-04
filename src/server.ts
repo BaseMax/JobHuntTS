@@ -17,6 +17,7 @@ import { JobResolver } from "./modules/job/job-resolver";
 import { ApplicationResolver } from "./modules/application/application-resolver";
 import { UserResolver } from "./modules/user/user-resolver";
 import { BookMarkResolver } from "./modules/bookMark/bookMark-resolver";
+import { ReviewResolver } from "./modules/review/review-resolver";
 dotenv.config();
 
 const port = process.env.Port || 3000;
@@ -31,6 +32,7 @@ export async function createServer() {
       ApplicationResolver,
       UserResolver,
       BookMarkResolver,
+      ReviewResolver,
     ],
     emitSchemaFile: path.resolve(__dirname, "schema.graphql"),
     container: { get: (cls) => container.resolve(cls) },

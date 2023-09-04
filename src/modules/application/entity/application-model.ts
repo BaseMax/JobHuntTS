@@ -13,8 +13,3 @@ export const ApplicationModel = mongoose.model(
   ApplicationSchema
 );
 
-// categoryId: {
-//   type: mongoose.Schema.Types.ObjectId,
-//   ref: "Category",
-//   required: true,
-// },

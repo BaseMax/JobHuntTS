@@ -29,6 +29,9 @@ export class ReviewService {
     );
   }
 
+  async deleteReview(reviewId: string): Promise<ReviewDocument | null> {
+    return await ReviewModel.findByIdAndDelete(reviewId);
+  }
   async canModify(
     userId: string,
     reviewId: string

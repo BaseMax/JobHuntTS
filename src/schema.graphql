@@ -111,6 +111,7 @@ type Mutation {
   deleteCategory(input: Mongo!): Category
   deleteJob(input: Mongo!): Job
   deleteProfile: UserProfile!
+  deleteReview(input: Mongo!): Review!
   getUserProfiles: [UserProfile!]
   login(input: LoginInput!): AuthPayload
   refreshToken(refreshToken: String!): AuthPayload
@@ -119,7 +120,7 @@ type Mutation {
   updateCategory(input: UpdateCategoryInput!): Category
   updateJob(input: UpdateJobInput!): Job
   updateProfile(input: UpdateUserProfile!): UserProfile!
-  updateReview(input: UpdateReviewInput!): Review!
+  updateReview(input: UpdateReviewInput!): Review
   updateStatus(input: UpdateApplication!): Application
   withdraw(input: Mongo!): Application
 }

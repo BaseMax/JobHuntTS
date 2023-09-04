@@ -55,6 +55,11 @@ export class ApplicationService {
     });
   }
 
+  async countOfApplications(jobId: string): Promise<number> {
+    return await ApplicationModel.count({
+      jobId: jobId,
+    });
+  }
   async getApplications(jobId: string): Promise<ApplicationDocument[]> {
     return ApplicationModel.find({
       jobId: jobId,

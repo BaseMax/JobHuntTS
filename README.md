@@ -48,44 +48,44 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 
 ## GraphQL
 
-| Type         | Name                      | Description                                      | Example                                                               |
-| ------------ | ------------------------- | ------------------------------------------------ | --------------------------------------------------------------------- |
-| **Mutation** | `createJob`               | Create a new job .                               | ![create job](./screenshots/createJob.png)                            |
-| **Query**    | `getJobs`                 | Get a list of all available jobs.                | ![get list of jobs ](./screenshots/getJobs.png)                       |
-| **Query**    | `getJobById`              | Get details of a specific job by its ID.         | ![get job by id](./screenshots/getJobByID.png)                        |
-| **Query**    | `getJobByTitle`           | Search for jobs by title.                        | ![get job by title ](./screenshots/getJobByTitle.png)                 |
-| **Query**    | `getJobByCategory`        | Filter jobs by category.                         | ![get jobs by category](./screenshots/getJobsByCategory.png)          |
-| **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.             | ![get featured jobs](./screenshots/getFeaturedJobs.png)               |
-| **Query**    | `getUserApplications`     | Get user applications...                         | ![get user applications](./screenshots/getUserApplications.png)       |
-| **Mutation** | `updateJob`               | Update details of an existing job .              | ![update job](./screenshots/updateJob.png)                            |
-| **Mutation** | `deleteJob`               | delete an existing job .                         | ![delete job](./screenshots/deleteJob.png)                            |
-| **Mutation** | `applyForJob`             | Apply for a job using user's profile.            | ![apply for job](./screenshots/applyToJob.png)                        |
-| **Mutation** | `withdrawApplication`     | Withdraw a job application by its ID.            | ![withdraw application](./screenshots/withdrawApplication.png)        |
-| **Mutation** | `acceptApplication`       | Accept a job application for a job               | ![update job status](./screenshots/acceptApplication.png)             |
-| **Mutation** | `rejectApplication`       | Reject a job application for a job.              | ![reject application](./screenshots/rejectApplication.png)            |
-| **Mutation** | `signUp`                  | Create a new user profile.                       | ![sign up](./screenshots/signup.png)                                  |
-| **Query**    | `getApplications`         | Get all job applications for a job listing.      | ![get applications](./screenshots/getApplications.png)                |
-| **Mutation** | `updateUserProfile`       | Update user profile                              | ![update user profile](./screenshots/updateUserProfile.png)           |
-| **Mutation** | `deleteUserProfile`       | Delete a user profile by its ID.                 | ![delete user profile](./screenshots/deleteUserProfile.png)           |
-| **Query**    | `getUserProfiles`         | Get a list of all registered users.              | ![get user profiles](./screenshots/getUserProfiles.png)               |
-| **Query**    | `getCategories`           | Get a list of all available job categories.      | ![get categories](./screenshots/getCategories.png)                    |
-| **Mutation** | `createCategory`          | Create a new job category.                       | ![create category](./screenshots/createCategory.png)                  |
-| **Mutation** | `updateCategory`          | Update a job category's details.                 | ![update category](./screenshots/updateCategory.png)                  |
-| **Mutation** | `deleteCategory`          | Delete a job category by its ID.                 | ![delete category ](./screenshots/deleteCategory.png)                 |
-| **Query**    | `getSimilarJobs`          | Get a list of jobs similar to a given job.       | ![get similar jobs](./screenshots/getSimilarJobs.png)                 |
-| **Query**    | `getRecentJobs`           | Get a list of recently posted job listings.      | ![get recent jobs](./screenshots/getRecentJobs.png)                   |
-| **Query**    | `getJobCountByCategory`   | Get the number of jobs in a specific category.   | ![get job count by category](./screenshots/getJobCountByCategory.png) |
-| **Mutation** | `addBookmark`             | Add a job to a user's bookmarks.                 | ![add book mark](./screenshots/addBookMark.png)                       |
-| **Mutation** | `removeBookmark`          | Remove a job from a user's bookmarks.            | ![remove job from book marks](./screenshots/removeBookMark.png)       |
-| **Query**    | `getBookmarkedJobs`       | Get a list of jobs bookmarked by a user.         | ![get booked mark jobs](./screenshots/getBookedMarkJobs.png)          |
-| **Query**    | `getUserBookmarkCount`    | Get the number of bookmarks for a user.          | ![get booked mark jobs](./screenshots/getBookMarkCountOfJobs.png)     |
-| **Mutation** | `createReview`            | Create a review for a specific a job.            | ![create review](./screenshots/createReview.png)                      |
-| **Mutation** | `updateReview`            | Update a review's content or rating.             | ![update review](./screenshots/updateReview.png)                      |
-| **Mutation** | `deleteReview`            | Delete a review by its ID.                       | ![delete review](./screenshots/deleteReview.png)                      |
-| **Query**    | `getReviewsForJob`        | Get all reviews for a specific job .             | ![get reviews for job](./screenshots/getReviewsForJob.png)            |
-| **Query**    | `getTopCategories`        | Get the most popular job categories.             | ![get top categories](./screenshots/getTopCategories.png)             |
-| **Query**    | `getJobsWithApplications` | Get a list of jobs with associated applications. | `getJobsWithApplications { id, title, applicationCount }`             |
-| **Query**    | `getOpenApplications`     | Get a list of open job applications.             | `getOpenApplications { id, user, job, status }`                       |
+| Type         | Name                      | Description                                     | Example                                                                   |
+| ------------ | ------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------- |
+| **Mutation** | `createJob`               | Create a new job .                              | ![create job](./screenshots/createJob.png)                                |
+| **Query**    | `getJobs`                 | Get a list of all available jobs.               | ![get list of jobs ](./screenshots/getJobs.png)                           |
+| **Query**    | `getJobById`              | Get details of a specific job by its ID.        | ![get job by id](./screenshots/getJobByID.png)                            |
+| **Query**    | `getJobByTitle`           | Search for jobs by title.                       | ![get job by title ](./screenshots/getJobByTitle.png)                     |
+| **Query**    | `getJobByCategory`        | Filter jobs by category.                        | ![get jobs by category](./screenshots/getJobsByCategory.png)              |
+| **Query**    | `getFeaturedJobs`         | Get a list of featured job listings.            | ![get featured jobs](./screenshots/getFeaturedJobs.png)                   |
+| **Query**    | `getUserApplications`     | Get user applications...                        | ![get user applications](./screenshots/getUserApplications.png)           |
+| **Mutation** | `updateJob`               | Update details of an existing job .             | ![update job](./screenshots/updateJob.png)                                |
+| **Mutation** | `deleteJob`               | delete an existing job .                        | ![delete job](./screenshots/deleteJob.png)                                |
+| **Mutation** | `applyForJob`             | Apply for a job using user's profile.           | ![apply for job](./screenshots/applyToJob.png)                            |
+| **Mutation** | `withdrawApplication`     | Withdraw a job application by its ID.           | ![withdraw application](./screenshots/withdrawApplication.png)            |
+| **Mutation** | `acceptApplication`       | Accept a job application for a job              | ![update job status](./screenshots/acceptApplication.png)                 |
+| **Mutation** | `rejectApplication`       | Reject a job application for a job.             | ![reject application](./screenshots/rejectApplication.png)                |
+| **Mutation** | `signUp`                  | Create a new user profile.                      | ![sign up](./screenshots/signup.png)                                      |
+| **Query**    | `getApplications`         | Get all job applications for a job listing.     | ![get applications](./screenshots/getApplications.png)                    |
+| **Mutation** | `updateUserProfile`       | Update user profile                             | ![update user profile](./screenshots/updateUserProfile.png)               |
+| **Mutation** | `deleteUserProfile`       | Delete a user profile by its ID.                | ![delete user profile](./screenshots/deleteUserProfile.png)               |
+| **Query**    | `getUserProfiles`         | Get a list of all registered users.             | ![get user profiles](./screenshots/getUserProfiles.png)                   |
+| **Query**    | `getCategories`           | Get a list of all available job categories.     | ![get categories](./screenshots/getCategories.png)                        |
+| **Mutation** | `createCategory`          | Create a new job category.                      | ![create category](./screenshots/createCategory.png)                      |
+| **Mutation** | `updateCategory`          | Update a job category's details.                | ![update category](./screenshots/updateCategory.png)                      |
+| **Mutation** | `deleteCategory`          | Delete a job category by its ID.                | ![delete category ](./screenshots/deleteCategory.png)                     |
+| **Query**    | `getSimilarJobs`          | Get a list of jobs similar to a given job.      | ![get similar jobs](./screenshots/getSimilarJobs.png)                     |
+| **Query**    | `getRecentJobs`           | Get a list of recently posted job listings.     | ![get recent jobs](./screenshots/getRecentJobs.png)                       |
+| **Query**    | `getJobCountByCategory`   | Get the number of jobs in a specific category.  | ![get job count by category](./screenshots/getJobCountByCategory.png)     |
+| **Mutation** | `addBookmark`             | Add a job to a user's bookmarks.                | ![add book mark](./screenshots/addBookMark.png)                           |
+| **Mutation** | `removeBookmark`          | Remove a job from a user's bookmarks.           | ![remove job from book marks](./screenshots/removeBookMark.png)           |
+| **Query**    | `getBookmarkedJobs`       | Get a list of jobs bookmarked by a user.        | ![get booked mark jobs](./screenshots/getBookedMarkJobs.png)              |
+| **Query**    | `getUserBookmarkCount`    | Get the number of bookmarks for a user.         | ![get booked mark jobs](./screenshots/getBookMarkCountOfJobs.png)         |
+| **Mutation** | `createReview`            | Create a review for a specific a job.           | ![create review](./screenshots/createReview.png)                          |
+| **Mutation** | `updateReview`            | Update a review's content or rating.            | ![update review](./screenshots/updateReview.png)                          |
+| **Mutation** | `deleteReview`            | Delete a review by its ID.                      | ![delete review](./screenshots/deleteReview.png)                          |
+| **Query**    | `getReviewsForJob`        | Get all reviews for a specific job .            | ![get reviews for job](./screenshots/getReviewsForJob.png)                |
+| **Query**    | `getTopCategories`        | Get the most popular job categories.            | ![get top categories](./screenshots/getTopCategories.png)                 |
+| **Query**    | `getJobsWithApplications` | Get a job and count of associated applications. | ![get count of applications](./screenshots/getJobAndApplicationCount.png) |
+| **Query**    | `getOpenApplications`     | Get a list of open job applications.            | `getOpenApplications { id, user, job, status }`                           |
 
 ## GraphQL Schema
 

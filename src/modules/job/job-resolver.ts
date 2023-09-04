@@ -7,13 +7,16 @@ import { CategoryService } from "../category/category-service";
 import { Mongo } from "../common/mongoId-input";
 import { Search } from "./dto/search-job-input";
 import { UpdateJobInput } from "./dto/update-job-input";
+import { JobAndCount } from "./entity/job-count-entity";
+import { ApplicationService } from "../application/application-service";
 
 @injectable()
 @Resolver()
 export class JobResolver {
   constructor(
     private readonly jobService: JobService,
-    private readonly categoryService: CategoryService
+    private readonly categoryService: CategoryService,
+    private readonly applicationService: ApplicationService
   ) {}
 
   @Mutation(() => Job, { nullable: true })
@@ -65,6 +68,20 @@ export class JobResolver {
     return await this.jobService.getRecentJobs();
   }
 
+  @Query(() => JobAndCount, { nullable: true })
+  async getJobsWithApplications(
+    @Arg("input") mongo: Mongo
+  ): Promise<JobAndCount> {
+    const job = await this.jobService.findByIdOrThrow(mongo.id);
+    const countOfApplications =
+      await this.applicationService.countOfApplications(mongo.id);
+
+    return {
+      id: job?._id.toString(),
+      title: job?.title as string,
+      countOfApplications: countOfApplications,
+    };
+  }
   @Mutation(() => Job, { nullable: true })
   @Authorized()
   async updateJob(@Arg("input") updateJobInput: UpdateJobInput) {
@@ -77,5 +94,5 @@ export class JobResolver {
   async deleteJob(@Arg("input") mongo: Mongo) {
     const job = await this.jobService.findByIdOrThrow(mongo.id);
     return this.jobService.deleteJob(mongo.id);
-  }
+  }   
 }

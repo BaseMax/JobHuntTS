@@ -93,6 +93,12 @@ type Job {
   title: String!
 }
 
+type JobAndCount {
+  countOfApplications: Int!
+  id: String!
+  title: String!
+}
+
 input LimitInput {
   limit: Int!
 }
@@ -140,6 +146,7 @@ type Query {
   getJobs: [Job!]
   getJobsByCategory(input: SearchCategoryInput!): Category
   getJobsByTitle(input: Search!): [Job!]
+  getJobsWithApplications(input: Mongo!): JobAndCount
   getRecentJobs: [Job!]!
   getReviewsForJobs(input: Mongo!): [Review!]!
   getSimilarJobs(input: Mongo!): [Job!]!

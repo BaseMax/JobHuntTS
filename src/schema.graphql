@@ -93,6 +93,10 @@ type Job {
   title: String!
 }
 
+input LimitInput {
+  limit: Int!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -137,7 +141,9 @@ type Query {
   getJobsByCategory(input: SearchCategoryInput!): Category
   getJobsByTitle(input: Search!): [Job!]
   getRecentJobs: [Job!]!
+  getReviewsForJobs(input: Mongo!): [Review!]!
   getSimilarJobs(input: Mongo!): [Job!]!
+  getTopCategories(input: LimitInput!): [TopCategory!]!
   getUserApplications: [Application!]
   getUserBookmarkCount: BookMarkAndCount
 }
@@ -168,6 +174,12 @@ enum Status {
   Accepted
   Pending
   Rejected
+}
+
+type TopCategory {
+  _id: String!
+  countOfJobs: Int!
+  name: String!
 }
 
 input UpdateApplication {

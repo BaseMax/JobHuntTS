@@ -62,7 +62,6 @@ export class JobService {
     });
   }
 
-  
   async updateJob(updateJobInput: UpdateJobInput): Promise<JobDocument | null> {
     return await JobModel.findByIdAndUpdate(
       updateJobInput.jobId,
@@ -74,6 +73,7 @@ export class JobService {
       }
     );
   }
+
 
   async deleteJob(id: string): Promise<JobDocument | null> {
     return await JobModel.findByIdAndDelete(id);

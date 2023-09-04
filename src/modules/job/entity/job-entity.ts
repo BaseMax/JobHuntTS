@@ -4,7 +4,7 @@ import { Field, ObjectType } from "type-graphql";
 export class Job {
   @Field()
   id : string
-  
+    
   @Field()
   title: string;
   @Field()

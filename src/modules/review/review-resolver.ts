@@ -1,5 +1,5 @@
 import { injectable } from "tsyringe";
-import { Arg, Authorized, Mutation, Resolver } from "type-graphql";
+import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { Review } from "./entity/review-entity";
 import { CreateReviewInput } from "./dto/create-review-input";
 import { ReviewService } from "./review-service";
@@ -44,5 +44,10 @@ export class ReviewResolver {
     const review = await this.reviewService.canModify(userId, mongo.id);
 
     return await this.reviewService.deleteReview(mongo.id);
+  }
+
+  @Query(() => [Review])
+  async getReviewsForJobs(@Arg("input") mongo: Mongo) {
+    return await this.reviewService.getReviewsForJob(mongo.id);
   }
 }

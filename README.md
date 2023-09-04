@@ -81,10 +81,9 @@ Open your browser and visit `http://localhost:3000` to access JobHunt.
 | **Query**    | `getUserBookmarkCount`    | Get the number of bookmarks for a user.          | ![get booked mark jobs](./screenshots/getBookMarkCountOfJobs.png)     |
 | **Mutation** | `createReview`            | Create a review for a specific a job.            | ![create review](./screenshots/createReview.png)                      |
 | **Mutation** | `updateReview`            | Update a review's content or rating.             | ![update review](./screenshots/updateReview.png)                      |
-| **Mutation** | `deleteReview`            | Delete a review by its ID.                       | `deleteReview(reviewID: "reviewID")`                                  |
-| **Mutation** | `rateReview`              | Rate a review as helpful or unhelpful.           | `rateReview(reviewID: "reviewID", helpful: true)`                     |
-| **Query**    | `getReviewsForJob`        | Get all reviews for a specific job listing.      | `getReviewsForJob(jobID: "jobID") { id, rating, content }`            |
-| **Query**    | `getTopCategories`        | Get the most popular job categories.             | `getTopCategories(limit: 5) { name, jobCount }`                       |
+| **Mutation** | `deleteReview`            | Delete a review by its ID.                       | ![delete review](./screenshots/deleteReview.png)                      |
+| **Query**    | `getReviewsForJob`        | Get all reviews for a specific job .             | ![get reviews for job](./screenshots/getReviewsForJob.png)            |
+| **Query**    | `getTopCategories`        | Get the most popular job categories.             | ![get top categories](./screenshots/getTopCategories.png)             |
 | **Query**    | `getJobsWithApplications` | Get a list of jobs with associated applications. | `getJobsWithApplications { id, title, applicationCount }`             |
 | **Query**    | `getOpenApplications`     | Get a list of open job applications.             | `getOpenApplications { id, user, job, status }`                       |
 

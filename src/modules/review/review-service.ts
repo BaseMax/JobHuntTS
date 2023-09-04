@@ -32,6 +32,12 @@ export class ReviewService {
   async deleteReview(reviewId: string): Promise<ReviewDocument | null> {
     return await ReviewModel.findByIdAndDelete(reviewId);
   }
+
+  async getReviewsForJob(jobId: string): Promise<ReviewDocument[]> {
+    return await ReviewModel.find({
+      jobId: jobId,
+    });
+  }
   async canModify(
     userId: string,
     reviewId: string

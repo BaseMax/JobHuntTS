@@ -8,6 +8,8 @@ import { SearchCategoryInput } from "./dto/search-input";
 import { Mongo } from "../common/mongoId-input";
 import { UpdateCategoryInput } from "./dto/update-category-input";
 import { CategoryAndCount } from "./entity/category-couent-entity";
+import { TopCategory } from "./entity/top-category-entity";
+import { LimitInput } from "./dto/limit-input";
 @injectable()
 @Resolver()
 export class CategoryResolver {
@@ -71,6 +73,11 @@ export class CategoryResolver {
       countOfJobs: count,
       createdAt: category.createdAt,
     };
+  }
+
+  @Query(() => [TopCategory])
+  async getTopCategories(@Arg("input") limitInput: LimitInput) {
+    return await this.categoryService.getTopCategories(limitInput.limit);
   }
 
   @Mutation(() => Category, { nullable: true })

@@ -6,6 +6,7 @@ import { GraphQLError } from "graphql";
 import { JobDocument } from "../job/entity/job-document";
 import { JobModel } from "../job/entity/job-model";
 import { UpdateCategoryInput } from "./dto/update-category-input";
+import { TopCategory } from "./entity/top-category-entity";
 
 @injectable()
 export class CategoryService {
@@ -88,6 +89,41 @@ export class CategoryService {
       }
     );
   }
+
+  async getTopCategories(limit: number): Promise<TopCategory[]> {
+    const result = await JobModel.aggregate([
+      {
+        $group: {
+          _id: "$categoryId",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $lookup: {
+          from: "categories",
+          localField: "_id",
+          foreignField: "_id",
+          as: "categoryInfo",
+        },
+      },
+      {
+        $sort: { count: -1 },
+      },
+      {
+        $limit: limit,
+      },
+      { $unwind: "$categoryInfo" },
+      {
+        $project: {
+          name: "$categoryInfo.name",
+          countOfJobs: "$count",
+        },
+      },
+    ]);
+
+    return result;
+  }
+
   async deleteCategory(id: string): Promise<CategoryDocument | null> {
     const deletedJobs = await JobModel.deleteMany({
       categoryId: id,

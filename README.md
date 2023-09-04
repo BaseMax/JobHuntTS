@@ -6,10 +6,11 @@ JobHunt is an open-source job board platform that enables employers to post job 
 
 - **Employer Dashboard:** Employers can easily create accounts, log in, and post job listings.
 - **Job Seeker Profile:** Job seekers can create profiles, search for jobs, and apply using their profiles.
-- **Job Listings:** Display job listings with detailed descriptions, requirements, and application instructions.
+- **Job Listings:** Display job with detailed descriptions, requirements, and application instructions.
 - **Application Tracking:** Employers can track and manage job applications through the dashboard.
 - **GraphQL API:** Utilize a powerful GraphQL API for seamless job listing retrieval and user interactions.
 - **Open Source:** JobHunt is open source, allowing you to customize and contribute to its development.
+- **Refresh Token:** JobHunt is featured by refresh token to enhance user experience.
 
 ## Installation
 
@@ -127,7 +128,6 @@ type Review {
   job: Job!
   rating: Int!
   content: String!
-  
 }
 
 type Category {
@@ -142,12 +142,10 @@ type Bookmark {
   job: Job!
 }
 
-
 type JobCountByCategory {
   category: String!
   count: Int!
 }
-
 
 type CategoryWithJobCount {
   id: ID!

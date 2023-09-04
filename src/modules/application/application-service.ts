@@ -65,4 +65,10 @@ export class ApplicationService {
       jobId: jobId,
     });
   }
+
+  async getOpenApplications(): Promise<ApplicationDocument[]> {
+    return await ApplicationModel.find({
+      status: "pending",
+    });
+  }
 }

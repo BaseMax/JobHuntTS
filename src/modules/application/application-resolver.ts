@@ -61,4 +61,10 @@ export class ApplicationResolver {
   async getApplications(@Arg("input") mongo: Mongo) {
     return await this.applicationService.getApplications(mongo.id);
   }
+
+  @Query(() => [Application], { nullable: true })
+  @Authorized()
+  async getOpenApplications() {
+    return await this.applicationService.getOpenApplications();
+  }
 }

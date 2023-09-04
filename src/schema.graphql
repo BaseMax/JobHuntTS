@@ -147,6 +147,7 @@ type Query {
   getJobsByCategory(input: SearchCategoryInput!): Category
   getJobsByTitle(input: Search!): [Job!]
   getJobsWithApplications(input: Mongo!): JobAndCount
+  getOpenApplications: [Application!]
   getRecentJobs: [Job!]!
   getReviewsForJobs(input: Mongo!): [Review!]!
   getSimilarJobs(input: Mongo!): [Job!]!

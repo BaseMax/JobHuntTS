@@ -108,12 +108,9 @@ type Job {
 
 type User {
   id: ID!
-  username: String!
+  name: String!
   email: String!
-  bio: String
-  applications: [Application]
-  bookmarks: [Job]
-  reviews: [Review]
+
 }
 
 type Application {
@@ -177,9 +174,7 @@ type ReviewWithAuthor {
   id: ID!
   rating: Int!
   content: String!
-  helpfulCount: Int!
-  unhelpfulCount: Int!
-  user: User!
+
 }
 
 type UserWithBookmarks {

@@ -41,6 +41,8 @@ Rename `.env.example` to `.env` and fill in your environment variables.
 Run the development server:
 
 ```bash
+tsc
+
 npm run dev
 ```
 

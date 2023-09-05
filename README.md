@@ -242,7 +242,6 @@ type Mutation {
   createReview(jobID: ID!, userID: ID!, rating: Int!, content: String!): Review
   updateReview(reviewID: ID!, content: String!): Review
   deleteReview(reviewID: ID!): Review
-  rateReview(reviewID: ID!, helpful: Boolean!): Review
   createApplication(userID: ID!, jobID: ID!): Application
   updateApplication(
     applicationID: ID!
@@ -284,29 +283,17 @@ input UpdateJobInput {
 }
 
 input CreateUserInput {
-  username: String!
+  name: String!
   email: String!
-  bio: String
 }
 
 input UpdateUserInput {
-  username: String
+  name: String
   email: String
-  bio: String
 }
 
 input UpdateApplicationInput {
   status: String
-}
-
-input UpdateReviewFeedbackInput {
-  helpful: Boolean
-}
-
-input CreateReviewFeedbackInput {
-  reviewID: ID!
-  userID: ID!
-  helpful: Boolean!
 }
 ```
 

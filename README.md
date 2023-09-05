@@ -42,7 +42,6 @@ Run the development server:
 
 ```bash
 tsc
-
 npm run dev
 ```
 
